@@ -22,5 +22,5 @@ We'll build the graph using practices common in production graphs:
 ## Goals
 
 1. Publicize the existence of the VLG to showcase Dgraph's performance
-2. Inform developers of best practices in schema and query design
+2. Inform developers of best practices in schema and query design, and best deployment practices
 
