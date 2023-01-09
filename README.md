@@ -27,7 +27,8 @@ This repo will contain folders for each step, and will include detailed document
 
 1. Publicize the existence of the VLG to **showcase Dgraph's performance**
 2. Use the repo to **instruct developers** on best practices in schema, ETL and query design, as well as best deployment practices
-3. Serve as a test fixture for upcoming releases of Dgraph
+3. Afford new Dgraph employees a chance to use Dgraph in the 'real-word'
+4. Serve as a test fixture for upcoming releases of Dgraph
 
 ## Future work
 
