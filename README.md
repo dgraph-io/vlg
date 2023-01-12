@@ -22,7 +22,7 @@ We'll build the graph using practices common in production graphs:
 * Creation of a Docker container (separate repo) with a subset of the data that developers can use to quickly start with Dgraph (one that's more complex than the 'million-movie' dataset).
 * Creation of a simple UI that allows for search and visualization of the graph (Linkurious, Graphistry?)
 
-This repo will contain folders for each step, and will include detailed documentation descibing the 'whys' and 'hows' behind the step. This README will be replaced my an _Introduction_ page.
+This repo will contain folders for each step, and will include detailed documentation descibing the 'whys' and 'hows' behind the step. This README will be replaced by an _Introduction_ page.
 
 ## Goals
 
