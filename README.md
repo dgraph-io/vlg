@@ -17,10 +17,10 @@ We'll build the graph using practices common in production graphs:
 * Create the GraphQL SDL for the schema and document the reasons for decisions made
 * Use of the bulk loader for initial loading
 * Use of a batch updater (maybe several languages?) to load new data into the graph
-* Deploy the graph to HA production (Dgraph Cloud or maybe instead a k8s cluster to illustrate how that's best accomplished)
+* Deploy the graph to HA production (Dgraph Cloud or maybe instead a k8s cluster to illustrate how that's best accomplished). If possible, provide simple deployment mechanism (scripts, terraform, etc) so that a potential Dgraph user could easily deploy the graph to their own production space.
 * Monitor the health of the graph using best available tools
 * Creation of a Docker container (separate repo) with a subset of the data that developers can use to quickly start with Dgraph (one that's more complex than the 'million-movie' dataset).
-* Creation of a simple UI that allows for search and visualization of the graph
+* Creation of a simple UI that allows for search and visualization of the graph (Linkurious, Graphistry?)
 
 This repo will contain folders for each step, and will include detailed documentation descibing the 'whys' and 'hows' behind the step. This README will be replaced my an _Introduction_ page.
 
