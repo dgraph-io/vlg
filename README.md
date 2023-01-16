@@ -31,6 +31,10 @@ This repo will contain folders for each step, and will include detailed document
 3. Afford new Dgraph employees a chance to use Dgraph in the 'real-word'
 4. Serve as a test fixture for upcoming releases of Dgraph
 
+## Contributing
+
+All Dgraph staff are invited to work on this project. If you've always wanted to learn a particular aspect of Dgraph, here's your chance. When proposing new content for this repo, please create a branch and submit a pull request.
+
 ## Future (possible) work
 
 1. Extend the graph to allow user accounts. Extend the sample UI to allow accounts to save searches and make personal notes associated with graph entities.
