@@ -1,6 +1,8 @@
 # vlg
 Dgraph's Very Large Graph (WIP) Project
 
+[Project Board](https://github.com/orgs/dgraph-io/projects/15/views/2)
+
 ## Introduction
 This work-in-progress project aims to create a public, large graph to showcase Dgraph's power and ease of use.
 
@@ -33,7 +35,7 @@ This repo will contain folders for each step, and will include detailed document
 
 ## Contributing
 
-All Dgraph staff are invited to work on this project. If you've always wanted to learn a particular aspect of Dgraph, here's your chance. When proposing new content for this repo, please create a branch and submit a pull request.
+All Dgraph staff are invited to work on this project. If you've always wanted to learn a particular aspect of Dgraph, here's your chance. It also might be a good opportunity to "pair-program" with another member of staff to work together on an issue. When proposing new content for this repo, please create a branch and submit a pull request.
 
 ## Future (possible) work
 
