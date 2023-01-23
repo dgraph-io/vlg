@@ -1,0 +1,157 @@
+  1. "node_id"
+
+	Type of data:          Number
+	Contains null values:  False
+	Unique values:         2989
+	Smallest value:        80,000,012
+	Largest value:         240,558,070
+	Sum:                   254,951,718,578
+	Mean:                  85,296,660.615
+	Median:                80,080,548
+	StDev:                 24,152,999.679
+	Most common values:    85,004,929 (1x)
+	                       85,008,443 (1x)
+	                       85,008,517 (1x)
+	                       85,008,542 (1x)
+	                       85,008,583 (1x)
+
+  2. "name"
+
+	Type of data:          Text
+	Contains null values:  True (excluded from calculations)
+	Unique values:         2976
+	Longest value:         155 characters
+	Most common values:    Flipflop International Limited (3x)
+	                       Shampaign Investments Limited (3x)
+	                       ANTAM ENTERPRISES N.V. (2x)
+	                       Orion Group (2x)
+	                       Mackie Group (2x)
+
+  3. "type"
+
+	Type of data:          Text
+	Contains null values:  True (excluded from calculations)
+	Unique values:         4
+	Longest value:         26 characters
+	Most common values:    None (2101x)
+	                       LIMITED LIABILITY COMPANY (881x)
+	                       SOLE OWNERSHIP (4x)
+	                       FOREIGN FORMED CORPORATION (3x)
+
+  4. "incorporation_date"
+
+	Type of data:          Text
+	Contains null values:  True (excluded from calculations)
+	Unique values:         835
+	Longest value:         11 characters
+	Most common values:    None (2101x)
+	                       28-DEC-1989 (3x)
+	                       21-DEC-1995 (3x)
+	                       18-NOV-1996 (3x)
+	                       18-MAY-1983 (2x)
+
+  5. "struck_off_date"
+
+	Type of data:          Text
+	Contains null values:  True (excluded from calculations)
+	Unique values:         40
+	Longest value:         11 characters
+	Most common values:    None (2944x)
+	                       31-DEC-2000 (3x)
+	                       31-DEC-2002 (2x)
+	                       24-JUL-2000 (2x)
+	                       10-SEP-2003 (2x)
+
+  6. "closed_date"
+
+	Type of data:          Text
+	Contains null values:  True (excluded from calculations)
+	Unique values:         113
+	Longest value:         11 characters
+	Most common values:    None (2872x)
+	                       24-SEP-2009 (3x)
+	                       08-APR-2011 (2x)
+	                       03-MAY-2011 (2x)
+	                       10-APR-2014 (2x)
+
+  7. "jurisdiction"
+
+	Type of data:          Text
+	Contains null values:  True (excluded from calculations)
+	Unique values:         7
+	Longest value:         3 characters
+	Most common values:    None (2031x)
+	                       AW (888x)
+	                       VGB (62x)
+	                       BLZ (3x)
+	                       PAN (2x)
+
+  8. "jurisdiction_description"
+
+	Type of data:          Text
+	Contains null values:  True (excluded from calculations)
+	Unique values:         7
+	Longest value:         22 characters
+	Most common values:    None (2031x)
+	                       Aruba (888x)
+	                       British Virgin Islands (62x)
+	                       Belize (3x)
+	                       Panama (2x)
+
+  9. "countries"
+
+	Type of data:          Text
+	Contains null values:  True (excluded from calculations)
+	Unique values:         64
+	Longest value:         41 characters
+	Most common values:    None (2603x)
+	                       Isle of Man (105x)
+	                       Cayman Islands (79x)
+	                       United Kingdom (26x)
+	                       United States (24x)
+
+ 10. "country_codes"
+
+	Type of data:          Text
+	Contains null values:  True (excluded from calculations)
+	Unique values:         64
+	Longest value:         15 characters
+	Most common values:    None (2603x)
+	                       IMN (105x)
+	                       CYM (79x)
+	                       GBR (26x)
+	                       USA (24x)
+
+ 11. "sourceID"
+
+	Type of data:          Text
+	Contains null values:  False
+	Unique values:         7
+	Longest value:         57 characters
+	Most common values:    Paradise Papers - Appleby (2031x)
+	                       Paradise Papers - Aruba corporate registry (888x)
+	                       Pandora Papers - Trident Trust (49x)
+	                       Pandora Papers - Overseas Management Company (OMC) (11x)
+	                       Pandora Papers - Alemán, Cordero, Galindo & Lee (Alcogal) (5x)
+
+ 12. "valid_until"
+
+	Type of data:          Text
+	Contains null values:  False
+	Unique values:         3
+	Longest value:         53 characters
+	Most common values:    Appleby data is current through 2014 (2031x)
+	                       Aruba corporate registry data is current through 2016 (888x)
+	                       Provider data is current through 1970 (70x)
+
+ 13. "note"
+
+	Type of data:          Text
+	Contains null values:  True (excluded from calculations)
+	Unique values:         3
+	Longest value:         40 characters
+	Most common values:    None (2872x)
+	                       Closed date stands for Cancelled date. (90x)
+	                       Closed date stands for Liquidation date. (27x)
+
+Row count: 2989

@@ -1,0 +1,105 @@
+  1. "node_id_start"
+
+	Type of data:          Number
+	Contains null values:  False
+	Unique values:         1131495
+	Smallest value:        1
+	Largest value:         240,558,070
+	Sum:                   180,057,483,061,544
+	Mean:                  53,959,298.028
+	Median:                56,008,075
+	StDev:                 58,736,130.367
+	Most common values:    54,662 (36373x)
+	                       230,000,018 (35359x)
+	                       23,000,136 (14902x)
+	                       23,000,147 (9719x)
+	                       23,000,330 (8302x)
+
+  2. "node_id_end"
+
+	Type of data:          Number
+	Contains null values:  False
+	Unique values:         1321205
+	Smallest value:        25
+	Largest value:         240,558,044
+	Sum:                   176,716,581,678,145
+	Mean:                  52,958,102.797
+	Median:                55,020,403
+	StDev:                 57,191,324.09
+	Most common values:    236,724 (37338x)
+	                       240,000,001 (11962x)
+	                       81,027,146 (9268x)
+	                       81,027,090 (8558x)
+	                       81,029,389 (6120x)
+
+  3. "rel_type"
+
+	Type of data:          Text
+	Contains null values:  False
+	Unique values:         14
+	Longest value:         24 characters
+	Most common values:    officer_of (1720357x)
+	                       registered_address (832721x)
+	                       intermediary_of (598546x)
+	                       same_name_as (101816x)
+	                       similar (46761x)
+
+  4. "link"
+
+	Type of data:          Text
+	Contains null values:  True (excluded from calculations)
+	Unique values:         1042
+	Longest value:         281 characters
+	Most common values:    shareholder of (589890x)
+	                       registered address (566910x)
+	                       intermediary of (512797x)
+	                       director of (457970x)
+	                       registered office (164290x)
+
+  5. "status"
+
+	Type of data:          Text
+	Contains null values:  True (excluded from calculations)
+	Unique values:         3
+	Longest value:         9 characters
+	Most common values:    None (3161967x)
+	                       Resigned (131441x)
+	                       Appointed (43505x)
+
+  6. "start_date"
+
+	Type of data:          Text
+	Contains null values:  True (excluded from calculations)
+	Unique values:         24336
+	Longest value:         11 characters
+	Most common values:    None (2390210x)
+	                       31-DEC-1969 (1848x)
+	                       24-AUG-2010 (1176x)
+	                       24-JUL-1997 (660x)
+	                       03-OCT-2003 (615x)
+
+  7. "end_date"
+
+	Type of data:          Text
+	Contains null values:  True (excluded from calculations)
+	Unique values:         13558
+	Longest value:         11 characters
+	Most common values:    None (3068058x)
+	                       30-SEP-2012 (9663x)
+	                       29-DEC-2009 (852x)
+	                       15-NOV-2014 (811x)
+	                       13-JUN-2014 (735x)
+
+  8. "sourceID"
+
+	Type of data:          Text
+	Contains null values:  True (excluded from calculations)
+	Unique values:         12
+	Longest value:         49 characters
+	Most common values:    Paradise Papers - Malta corporate registry (776335x)
+	                       Panama Papers (674102x)
+	                       Offshore Leaks (561393x)
+	                       None (516628x)
+	                       Paradise Papers - Appleby (390966x)
+
+Row count: 3336913

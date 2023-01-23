@@ -1,0 +1,126 @@
+  1. "node_id"
+
+	Type of data:          Number
+	Contains null values:  False
+	Unique values:         26768
+	Smallest value:        21,309
+	Largest value:         240,099,001
+	Sum:                   598,031,166,534
+	Mean:                  22,341,271.912
+	Median:                11,003,858.5
+	StDev:                 52,000,054.079
+	Most common values:    11,000,001 (1x)
+	                       11,000,002 (1x)
+	                       11,000,003 (1x)
+	                       11,000,004 (1x)
+	                       11,000,005 (1x)
+
+  2. "name"
+
+	Type of data:          Text
+	Contains null values:  True (excluded from calculations)
+	Unique values:         25590
+	Longest value:         91 characters
+	Most common values:    HUTCHINSON GAYLE A. (62x)
+	                       SMITH JENNIFER G. (55x)
+	                       CARMICHAEL TREVOR A. (43x)
+	                       HARRIDYAL-SODHA LIZA A. (41x)
+	                       BOURQUE MARY ELLEN M. (40x)
+
+  3. "status"
+
+	Type of data:          Text
+	Contains null values:  True (excluded from calculations)
+	Unique values:         10
+	Longest value:         34 characters
+	Most common values:    None (14147x)
+	                       ACTIVE (7062x)
+	                       SUSPENDED (4756x)
+	                       UNRECOVERABLE ACCOUNTS (382x)
+	                       INACTIVE (270x)
+
+  4. "internal_id"
+
+	Type of data:          Text
+	Contains null values:  True (excluded from calculations)
+	Unique values:         14282
+	Longest value:         6 characters
+	Most common values:    None (12117x)
+	                       1004 (2x)
+	                       1 (2x)
+	                       10 (2x)
+	                       1003 (2x)
+
+  5. "address"
+
+	Type of data:          Text
+	Contains null values:  True (excluded from calculations)
+	Unique values:         8640
+	Longest value:         230 characters
+	Most common values:    None (18125x)
+	                       ATLANTIQUE (BVI) LIMITED 3RD FLOOR; 37 ESPLANADE CHANNEL ISLANDS ST. HELIER JE2 3QA; JERSEY UNITED KINGDOM (2x)
+	                       KANFER INVESTISSEMENTS S.A. 12, RUE JEAN ENGLING L-1466 LUXEMBOURG (2x)
+	                       CAÑON & CAÑON ASESORES TRIBUTARIOS CALLE 99 NO 7 A - 77  OFICINA 405 BOGOTA COLOMBIA (2x)
+	                       VALUEMADE LIMITED ROOM 905; 9/F.; K. WAH CENTRE; 191 JAVA ROAD; NORTH POINT HONG KONG (2x)
+
+  6. "countries"
+
+	Type of data:          Text
+	Contains null values:  True (excluded from calculations)
+	Unique values:         286
+	Longest value:         51 characters
+	Most common values:    Hong Kong (4895x)
+	                       None (3616x)
+	                       United Kingdom (1545x)
+	                       United States (1510x)
+	                       Taiwan (1323x)
+
+  7. "country_codes"
+
+	Type of data:          Text
+	Contains null values:  True (excluded from calculations)
+	Unique values:         286
+	Longest value:         15 characters
+	Most common values:    HKG (4895x)
+	                       None (3616x)
+	                       GBR (1545x)
+	                       USA (1510x)
+	                       TWN (1323x)
+
+  8. "sourceID"
+
+	Type of data:          Text
+	Contains null values:  False
+	Unique values:         9
+	Longest value:         57 characters
+	Most common values:    Panama Papers (14110x)
+	                       Offshore Leaks (9526x)
+	                       Pandora Papers - Alemán, Cordero, Galindo & Lee (Alcogal) (1023x)
+	                       Paradise Papers - Barbados corporate registry (974x)
+	                       Bahamas Leaks (541x)
+
+  9. "valid_until"
+
+	Type of data:          Text
+	Contains null values:  False
+	Unique values:         11
+	Longest value:         99 characters
+	Most common values:    The Panama Papers  data is current through 2015 (14110x)
+	                       The Offshore Leaks data is current through 2010 (9526x)
+	                       Barbados corporate registry data is current through 2016 (974x)
+	                       Provider data is current through 2018 (762x)
+	                       The Bahamas Leaks data is current through early 2016. (541x)
+
+ 10. "note"
+
+	Type of data:          Text
+	Contains null values:  True (excluded from calculations)
+	Unique values:         7
+	Longest value:         865 characters
+	Most common values:    None (26761x)
+	                       The name of this intermediary is displayed as it originally appeared in the leaked files ICIJ received. (2x)
+	                       Mr. Ignacio Mañe lawyer from M&O Abogados told ICIJ that the law firm he represents did not create or help manage the companies Monmouth Associates Ltd., Harrison Overseas Limited and Orsa Equities Ltd. He also said that their client was introduced to them by one of the biggest Swiss banks to help with a potential real estate transaction in Spain. 'At a later stage, we discovered the client held 3 entities in Panama (set up by that same bank), and upon knowing that we recommended to dissolve such companies, paying any back taxes due. That is why we got in contact with the service provider just to have them disused.'   (Updated on Oct. 11th, 2016) (1x)
+	                       Mr. Joseph Levy told ICIJ that Independent Financial Consulting, Inc. never had Mossack Fonseca as registered agent and that Carles-Barraza Abogados registered the company in 2007. Panama Papers documents show that Independent Financial Consulting was related to Mossack Fonseca through the rental of an office space. The company had an agreement with Mossfon Trust Corporation and paid regular fees for this service.  (Updated on Oct. 11th, 2016) (1x)
+	                       In the Mossack Fonseca database received by ICIJ, Maurice Perera and Amanda Marsh appear as beneficial owners of Worthlen Finance Limited. Maurice Perera told ICIJ that he and Amanda Marsh are not beneficial owners of the company. He said they work for Finsbury Trust and Corporate Services Limited, a corporate service provider in Gibraltar that managed Worthlen. Perera provided a letter signed by a Mossack Fonseca representative that states “according to records updated by our client on June 9, 2016 neither Mr. Maurice Perera nor Mrs. Amanda Marsh are the ultimate beneficial owner of the company. Mr. Marcel Benhamou, French citizen with address: 41, T. Tabidze Str. Apt 8, 0162, Tbilisi, Georgia is the ultimate beneficial owner of the company.” (Note updated on August 25th and November 29th, 2016 and visualization updated on November 8th and 29th, 2016). (1x)
+
+Row count: 26768

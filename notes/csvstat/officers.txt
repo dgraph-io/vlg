@@ -1,0 +1,90 @@
+  1. "node_id"
+
+	Type of data:          Number
+	Contains null values:  False
+	Unique values:         771315
+	Smallest value:        1
+	Largest value:         240,556,394
+	Sum:                   44,985,194,103,903
+	Mean:                  58,322,726.907
+	Median:                56,014,112
+	StDev:                 62,179,824.224
+	Most common values:    12,000,001 (1x)
+	                       12,000,002 (1x)
+	                       12,000,003 (1x)
+	                       12,000,004 (1x)
+	                       12,000,005 (1x)
+
+  2. "name"
+
+	Type of data:          Text
+	Contains null values:  True (excluded from calculations)
+	Unique values:         538362
+	Longest value:         226 characters
+	Most common values:    THE BEARER (70873x)
+	                       EL PORTADOR (9325x)
+	                       Bearer 1 (2655x)
+	                       CARMICHAEL TREVOR A. (1196x)
+	                       CLEMENTI LIMITED (1111x)
+
+  3. "countries"
+
+	Type of data:          Text
+	Contains null values:  True (excluded from calculations)
+	Unique values:         4086
+	Longest value:         303 characters
+	Most common values:    None (302268x)
+	                       Malta (45042x)
+	                       Not identified (39450x)
+	                       China (38273x)
+	                       Hong Kong (30226x)
+
+  4. "country_codes"
+
+	Type of data:          Text
+	Contains null values:  True (excluded from calculations)
+	Unique values:         4772
+	Longest value:         119 characters
+	Most common values:    None (300991x)
+	                       MLT (44991x)
+	                       XXX (39450x)
+	                       CHN (38259x)
+	                       HKG (30007x)
+
+  5. "sourceID"
+
+	Type of data:          Text
+	Contains null values:  False
+	Unique values:         22
+	Longest value:         57 characters
+	Most common values:    Panama Papers (238402x)
+	                       Paradise Papers - Barbados corporate registry (127912x)
+	                       Paradise Papers - Malta corporate registry (107210x)
+	                       Offshore Leaks (107190x)
+	                       Paradise Papers - Appleby (76915x)
+
+  6. "valid_until"
+
+	Type of data:          Text
+	Contains null values:  True (excluded from calculations)
+	Unique values:         77
+	Longest value:         129 characters
+	Most common values:    The Panama Papers data is current through 2015 (238402x)
+	                       Barbados corporate registry data is current through 2016 (127912x)
+	                       Malta corporate registry data is current through 2016 (107210x)
+	                       The Offshore Leaks data is current through 2010 (107190x)
+	                       Appleby data is current through 2014 (76915x)
+
+  7. "note"
+
+	Type of data:          Text
+	Contains null values:  True (excluded from calculations)
+	Unique values:         18
+	Longest value:         865 characters
+	Most common values:    None (767563x)
+	                       Not all beneficiaries are aware of offshore trusts in which they are named because the settlor may select beneficiaries without their knowledge. (3382x)
+	                       Record manually added from leaked documents (123x)
+	                       The individual was a minor at the time of the publication of the data (Nov 2017). Not all beneficiaries are aware of offshore trusts in which they are named because the settlor may select beneficiaries without their knowledge. (114x)
+	                       Officer role was translated from Dutch into English. (53x)
+
+Row count: 771315
