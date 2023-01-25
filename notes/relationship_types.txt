@@ -1,0 +1,16 @@
+| rel_type                 |
+| ------------------------ |
+| connected_to             |
+| intermediary_of          |
+| officer_of               |
+| probably_same_officer_as |
+| registered_address       |
+| same_address_as          |
+| same_as                  |
+| same_company_as          |
+| same_id_as               |
+| same_intermediary_as     |
+| same_name_as             |
+| similar                  |
+| similar_company_as       |
+| underlying               |

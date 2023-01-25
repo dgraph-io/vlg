@@ -1,0 +1,67 @@
+company_type
+""
+Business Company Limited by Shares
+The GRA group of Companies for express Co.
+Sundry Account
+Standard Company under IBC Act
+Hong Kong Trust
+Standard International Company
+BVI Sundry Entities (one off transactions)
+BVI Trust
+Domestic Company
+Client Sundry Account
+Mutual Fund Manager
+Nominee Only Entity
+Mutual Fund Administrator
+Professional Mutual Fund
+Partnership
+Mutual Fund
+Limited Liability Company
+Holding Company
+Singapore Trust
+Cook Islands Trust
+Private Company Limited By Shares
+Collective Investment Scheme
+Private Trust Company
+Cook Islands Asset Protection Trust
+Cook Islands Asset Protection Trust - 3520A
+BVI Share Trust
+Seminar / Workshop
+Liquidator Licence
+SHIP REGISTRATIONS
+Turks
+Trust
+Audit Licence
+Nevis - Limited Liability Company
+Bahamas IBC
+Belize International Business Company
+Limited Partnership
+Business Company Limited by Guarantee
+UK Register
+Nevis Company
+Samoa
+Busines Company Limited by Shares & Guarantee
+The Forbes Group of companies for Express Co..
+Panama - IBC
+Hong Kong
+Business Company Restricted Purposes
+Mauritius - Hybrid
+Seychelles
+Antigua
+Mauritius - International
+Mail Forwarding Only
+Mauritius - Offshore
+CAP 285
+Panama - Foundation
+Standard - Redomiciled
+Private Mutual Fund
+EXEMPT INSURANCE REGISTER
+EXEMPT INSURANCE HOLDING REGISTER
+Regular (Local) Company
+Business Corporation
+International Business Corporation
+Business Vehicle
+International Company
+Foreign Company Transfer
+Foreign Company
+International Trust

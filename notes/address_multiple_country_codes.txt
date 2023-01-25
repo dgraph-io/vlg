@@ -1,0 +1,9 @@
+|     node_id | address                                                                                                                                                                       | country_codes |
+| ----------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------- |
+| 240,005,430 | 111B-100 AVENIDA 202 PASEO DEL LAGO. GUATAPARO COUNTRY CLUB CARABOBO VALENCIA 546977, SURFSIDE, FL 33154-6977 VENEZUELA                                                       | VEN;USA       |
+| 240,201,665 | 1) 4-A BOGOMOLOVA STR., APT. 91, KOROLEV CITY,  MOSCOW  REGION, RUSSIA, P.O. BOX 141070  2) 23 SLAVINSKOGO STR., APT. 55, MINSK, BELARUS, P.O.  BOX 220086                    | RUS;BLR       |
+| 240,201,194 | 1) APT. 4A, 91 BOGOMOLOVA STR., KOROLEV, RUSSIA  2) 8 CHAIKOVSKOGO STR., MINSK, BELARUS                                                                                       | RUS;BLR       |
+| 240,200,667 | 1) 4A, APT. 91 BOGOMOLOVA STR., KOROLEV, RUSSIA  2) 8 CHAIKOVSKOGO STR., MINSK, BELARUS                                                                                       | RUS;BLR       |
+| 240,491,295 | ADMIN: DOUGLAS CHAMBERS, NORTH QUAY,DOUGLAS, IMI 4LA, ISLE OF MAN. RO: UNIT 3, THE EXCHANGE 9, STATION ROAD, STANSTED MOUNTFITCHET, STANSTED, CM24 8BE, ESSEX, UNITED KINGDOM | IMN;GBR       |
+| 240,492,255 | RESIDENTIAL ADDRESS: JOSAWINKEL 11, 6820 GURTIS, AUSTRIA, VADUZ, 9490, LIECHTENSTEIN                                                                                          | AUT;LIE       |
+| 240,491,833 | 41 BRITANNIA HOUSE 4TH FLOOR CATOR ROAD BANDAR SERI BEGAWAN BS 8811 BRUNEI, ROAD TOWN, TORTOLA, BS 8811, BRUNEI DARUSSALAM                                                    | VGB;BRN       |
