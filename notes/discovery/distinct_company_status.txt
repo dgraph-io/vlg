@@ -1,0 +1,85 @@
+""
+"Company moved to Peru August 13, 2014"
+"active (transferred to Fidelity on 2012-07-13, after Esyakov sold shares and left as director)"
+"de-registered, ceased business operations"
+2012-03-19 00:00:00
+?
+Active
+Bad debt account
+Change in administration pending
+Changed agent
+Client Sundry Account
+Closed
+Company liquidated
+Continuation Out
+Continuation-Out
+Dead
+Defaulted
+Deregistered
+Discontinuance
+Discontinued
+Dissolved
+Dissolved shelf company
+IAC
+In Dissolution
+In Formation
+In Liquidation
+In Penalty
+In Process of Converting
+In Process of Merging
+In liquidation
+In transition
+Inactivated
+Inactive
+LIQUIDATED
+Liquidated
+Liquidation in Progress
+Not Renewed by Client
+Not To Be Renewed / In Deregistration
+Pending
+Redomiciled
+Registered
+Relocated in new jurisdiction
+Removed
+Resigned
+Resigned as agent
+Resigned as agent of shelf company
+Shelf
+Shelf company
+Shelf company not possible to sell
+Struck / Defunct / Deregistered
+Struck Off
+Struck Off / Dissolved
+Struck Off Following Division
+Struck Off Following Merger
+Struck Off as Defunct
+Struck off
+Struck off - Non Pmt A/Fee
+Struck off Dissolved
+Subject to UN/EU Sanctions
+Sundry Account
+Suspended
+Terminated
+Transferred OUT
+Transferred Out
+Trash company
+Un Registered
+Vesting
+We resigned as registered agent
+Winding Up
+active
+appears active - still receiving invoices from Asiaciti
+closed
+closed for non-payment/non-communication
+dissolved
+dormant
+inactive
+liquidated
+open 
+status
+strike off
+struck off
+struck off 
+struck-off
+terminated
+to be liquidated

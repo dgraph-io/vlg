@@ -1,0 +1,102 @@
+  1. "node_id"
+
+	Type of data:          Number
+	Contains null values:  False
+	Unique values:         402246
+	Smallest value:        67,268
+	Largest value:         240,492,577
+	Sum:                   24,086,569,135,405
+	Mean:                  59,880,195.541
+	Median:                58,057,590.5
+	StDev:                 59,212,613.36
+	Most common values:    24,000,001 (1x)
+	                       24,000,002 (1x)
+	                       24,000,003 (1x)
+	                       24,000,004 (1x)
+	                       24,000,005 (1x)
+
+  2. "address"
+
+	Type of data:          Text
+	Contains null values:  True (excluded from calculations)
+	Unique values:         377861
+	Longest value:         667 characters
+	Most common values:    None (19935x)
+	                       2nd Floor (46x)
+	                       1st Floor (30x)
+	                       4th Floor (28x)
+	                       P.O. Box 957 (28x)
+
+  3. "name"
+
+	Type of data:          Text
+	Contains null values:  True (excluded from calculations)
+	Unique values:         222810
+	Longest value:         242 characters
+	Most common values:    None (178898x)
+	                       P.O. Box 957; Offshore Incorporations Centre; Road Town; Tortola; British Virgin Islands (19x)
+	                       80 Broad Street; Monrovia; Liberia (7x)
+	                       PO Box 957; Offshore Incorporations Centre; Road Town; Tortola; British Virgin Islands (6x)
+	                       P.O. Box 1164; Grand Cayman; Cayman Islands (6x)
+
+  4. "countries"
+
+	Type of data:          Text
+	Contains null values:  True (excluded from calculations)
+	Unique values:         366
+	Longest value:         46 characters
+	Most common values:    None (125328x)
+	                       China (32491x)
+	                       Hong Kong (28254x)
+	                       United States (24349x)
+	                       Barbados (19348x)
+
+  5. "country_codes"
+
+	Type of data:          Text
+	Contains null values:  True (excluded from calculations)
+	Unique values:         226
+	Longest value:         7 characters
+	Most common values:    None (125328x)
+	                       CHN (32491x)
+	                       HKG (28268x)
+	                       USA (24365x)
+	                       BRB (19348x)
+
+  6. "sourceID"
+
+	Type of data:          Text
+	Contains null values:  False
+	Unique values:         20
+	Longest value:         57 characters
+	Most common values:    Paradise Papers - Malta corporate registry (123269x)
+	                       Panama Papers (93454x)
+	                       Paradise Papers - Appleby (59200x)
+	                       Offshore Leaks (57600x)
+	                       Paradise Papers - Barbados corporate registry (20768x)
+
+  7. "valid_until"
+
+	Type of data:          Text
+	Contains null values:  True (excluded from calculations)
+	Unique values:         26
+	Longest value:         58 characters
+	Most common values:    Malta corporate registry data is current through 2016 (123269x)
+	                       The Panama Papers  data is current through 2015 (93454x)
+	                       Appleby data is current through 2014 (59200x)
+	                       The Offshore Leaks data is current through 2010 (57600x)
+	                       Barbados corporate registry data is current through 2016 (20768x)
+
+  8. "note"
+
+	Type of data:          Text
+	Contains null values:  True (excluded from calculations)
+	Unique values:         7
+	Longest value:         347 characters
+	Most common values:    None (402214x)
+	                       Record manually added from leaked documents (23x)
+	                       ICIJ previously published the names and addresses of officers of Ploomo Ltd based on data contained in the Maltese Business Registry. ICIJ subsequently learned that this data was incorrect, and that the listed officers were not associated with the company. ICIJ therefore removed the officers' names and addresses from the database (7th July 2022) (5x)
+	                       In August 2022, ICIJ was provided with an official document showing that another business is currently linked to this address. (1x)
+	                       The original address has been redacted. (Updated on May 12th , 2021) (1x)
+
+Row count: 402246

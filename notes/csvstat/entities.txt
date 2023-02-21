@@ -1,0 +1,263 @@
+  1. "node_id"
+
+	Type of data:          Number
+	Contains null values:  False
+	Unique values:         814344
+	Smallest value:        66,978
+	Largest value:         240,554,209
+	Sum:                   42,505,784,947,445
+	Mean:                  52,196,350.618
+	Median:                20,088,562.5
+	StDev:                 66,535,767.579
+	Most common values:    10,000,001 (1x)
+	                       10,000,002 (1x)
+	                       10,000,003 (1x)
+	                       10,000,004 (1x)
+	                       10,000,005 (1x)
+
+  2. "name"
+
+	Type of data:          Text
+	Contains null values:  True (excluded from calculations)
+	Unique values:         781569
+	Longest value:         128 characters
+	Most common values:    None (29x)
+	                       DE PALM TOURS N.V. - DE PALM TOURS (19x)
+	                       RENTCAR N.V. - HERTZ (13x)
+	                       KM BM-C-SEVEN LTD. (12x)
+	                       Details temporarily withheld (10x)
+
+  3. "original_name"
+
+	Type of data:          Text
+	Contains null values:  True (excluded from calculations)
+	Unique values:         368821
+	Longest value:         196 characters
+	Most common values:    None (424822x)
+	                       KM BM-C-SEVEN LTD. (12x)
+	                       POSITUM TWELVE LIMITED (8x)
+	                       BRITTEN TRADING LIMITED (6x)
+	                       SUNMEAD MANAGEMENT LIMITED (6x)
+
+  4. "former_name"
+
+	Type of data:          Text
+	Contains null values:  True (excluded from calculations)
+	Unique values:         6783
+	Longest value:         115 characters
+	Most common values:    None (807507x)
+	                       EXTRANJERA (25x)
+	                       IN PROCESS TO CHANGE THE NAME. (4x)
+	                       INTERNATIONAL (3x)
+	                       THE NATURE MANA (2x)
+
+  5. "jurisdiction"
+
+	Type of data:          Text
+	Contains null values:  True (excluded from calculations)
+	Unique values:         103
+	Longest value:         5 characters
+	Most common values:    BAH (209634x)
+	                       BVI (167841x)
+	                       MLT (83929x)
+	                       KNA (70516x)
+	                       XXX (53200x)
+
+  6. "jurisdiction_description"
+
+	Type of data:          Text
+	Contains null values:  True (excluded from calculations)
+	Unique values:         88
+	Longest value:         34 characters
+	Most common values:    Bahamas (209713x)
+	                       British Virgin Islands (172389x)
+	                       Malta (83939x)
+	                       Saint Kitts and Nevis (70604x)
+	                       Undetermined (53571x)
+
+  7. "company_type"
+
+	Type of data:          Text
+	Contains null values:  True (excluded from calculations)
+	Unique values:         66
+	Longest value:         46 characters
+	Most common values:    None (675593x)
+	                       Standard International Company (40072x)
+	                       Standard Company under IBC Act (26214x)
+	                       Business Company Limited by Shares (25130x)
+	                       Regular (Local) Company (17599x)
+
+  8. "address"
+
+	Type of data:          Text
+	Contains null values:  True (excluded from calculations)
+	Unique values:         20582
+	Longest value:         269 characters
+	Most common values:    None (515022x)
+	                       Portcullis TrustNet Chambers P.O. Box 3444 Road Town, Tortola BRITISH VIRGIN ISLANDS (33841x)
+	                       ORION HOUSE SERVICES (HK) LIMITED ROOM 1401; 14/F.; WORLD COMMERCE  CENTRE; HARBOUR CITY; 7-11 CANTON ROAD; TSIM SHA TSUI; KOWLOON; HONG KONG (7012x)
+	                       Unitrust Corporate Services Ltd. John Humphries House, Room 304 4-10 Stockwell Street, Greenwich London SE10 9JN RT BVI (5697x)
+	                       MOSSACK FONSECA & CO. MOSSFON BUILDING CALLE 54 ESTE PANAMA, REPUBLICA DE PANAMA (4349x)
+
+  9. "internal_id"
+
+	Type of data:          Number
+	Contains null values:  True (excluded from calculations)
+	Unique values:         343795
+	Smallest value:        1
+	Largest value:         10,500,009
+	Sum:                   269,676,936,938
+	Mean:                  692,327.871
+	Median:                149,769.5
+	StDev:                 1,531,089.646
+	Most common values:    None (424822x)
+	                       100 (3x)
+	                       106 (3x)
+	                       125 (3x)
+	                       119 (3x)
+
+ 10. "incorporation_date"
+
+	Type of data:          Text
+	Contains null values:  True (excluded from calculations)
+	Unique values:         19009
+	Longest value:         12 characters
+	Most common values:    None (25874x)
+	                       02-JAN-1998 (1376x)
+	                       04-JAN-1999 (1211x)
+	                       04-JAN-2000 (1159x)
+	                       02-JAN-1997 (1155x)
+
+ 11. "inactivation_date"
+
+	Type of data:          Text
+	Contains null values:  True (excluded from calculations)
+	Unique values:         6896
+	Longest value:         11 characters
+	Most common values:    None (669571x)
+	                       02-NOV-2009 (1723x)
+	                       06-NOV-2015 (1475x)
+	                       03-MAY-2010 (1399x)
+	                       06-NOV-2008 (1364x)
+
+ 12. "struck_off_date"
+
+	Type of data:          Text
+	Contains null values:  True (excluded from calculations)
+	Unique values:         9083
+	Longest value:         11 characters
+	Most common values:    None (470501x)
+	                       31-AUG-2002 (18576x)
+	                       01-JAN-2000 (15896x)
+	                       31-JAN-2001 (13233x)
+	                       31-DEC-1998 (10378x)
+
+ 13. "dorm_date"
+
+	Type of data:          Text
+	Contains null values:  True (excluded from calculations)
+	Unique values:         276
+	Longest value:         11 characters
+	Most common values:    None (794137x)
+	                       01-MAY-2009 (2261x)
+	                       01-NOV-2009 (2088x)
+	                       01-NOV-2008 (1780x)
+	                       01-MAY-2008 (1560x)
+
+ 14. "status"
+
+	Type of data:          Text
+	Contains null values:  True (excluded from calculations)
+	Unique values:         84
+	Longest value:         94 characters
+	Most common values:    None (456312x)
+	                       Active (116029x)
+	                       Defaulted (100090x)
+	                       Dissolved (24081x)
+	                       Dead (23095x)
+
+ 15. "service_provider"
+
+	Type of data:          Text
+	Contains null values:  True (excluded from calculations)
+	Unique values:         5
+	Longest value:         26 characters
+	Most common values:    None (470258x)
+	                       Mossack Fonseca (213634x)
+	                       Portcullis Trustnet (61123x)
+	                       Commonwealth Trust Limited (44393x)
+	                       Appleby (24936x)
+
+ 16. "ibcRUC"
+
+	Type of data:          Text
+	Contains null values:  True (excluded from calculations)
+	Unique values:         511468
+	Longest value:         27 characters
+	Most common values:    None (251879x)
+	                       0 (1449x)
+	                       30 (720x)
+	                       80 (678x)
+	                       40 (670x)
+
+ 17. "country_codes"
+
+	Type of data:          Text
+	Contains null values:  True (excluded from calculations)
+	Unique values:         1102
+	Longest value:         15 characters
+	Most common values:    None (309353x)
+	                       MLT (84331x)
+	                       VGB (54932x)
+	                       HKG (38906x)
+	                       BRB (38430x)
+
+ 18. "countries"
+
+	Type of data:          Text
+	Contains null values:  True (excluded from calculations)
+	Unique values:         1103
+	Longest value:         64 characters
+	Most common values:    None (309353x)
+	                       Malta (84331x)
+	                       British Virgin Islands (54932x)
+	                       Hong Kong (38906x)
+	                       Barbados (38430x)
+
+ 19. "sourceID"
+
+	Type of data:          Text
+	Contains null values:  False
+	Unique values:         22
+	Longest value:         57 characters
+	Most common values:    Panama Papers (213634x)
+	                       Bahamas Leaks (175888x)
+	                       Offshore Leaks (105516x)
+	                       Paradise Papers - Malta corporate registry (83896x)
+	                       Paradise Papers - Nevis corporate registry (70501x)
+
+ 20. "valid_until"
+
+	Type of data:          Text
+	Contains null values:  True (excluded from calculations)
+	Unique values:         65
+	Longest value:         129 characters
+	Most common values:    The Panama Papers data is current through 2015 (213634x)
+	                       The Bahamas Leaks data is current through early 2016. (175888x)
+	                       The Offshore Leaks data is current through 2010 (105516x)
+	                       Malta corporate registry data is current through 2016 (83896x)
+	                       Nevis corporate registry data is current through 2016 (70501x)
+
+ 21. "note"
+
+	Type of data:          Text
+	Contains null values:  True (excluded from calculations)
+	Unique values:         198
+	Longest value:         865 characters
+	Most common values:    None (772579x)
+	                       Closed date stands for Cancelled date. (18211x)
+	                       This is not an offshore entity even though it was logged as such in original database ICIJ received. It isi an internal account created by the agent to record miscellaneous charges of an officer or intermediary (8984x)
+	                       Closed date stands for dissolved date. (8205x)
+	                       Closed date stands for Liquidation date. (3619x)
+
+Row count: 814344
