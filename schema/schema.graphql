@@ -1,0 +1,112 @@
+enum Source {
+    PandoraPapers
+    ParadisePapers
+    OffshoreLeaks
+    BahamasLeak
+}
+
+interface Record {
+    id: ID!
+
+    "The offshore links 'node_id'"
+    nodeID: Int! @id
+    "The ICIJ internal ID"
+    internalID: Int! @search
+    "The record source"
+    sourceID: Source! @search(by: [exact])
+    "Notes about the record"
+    notes: String @search(by: [fulltext])
+
+    "The associated name"
+    name: String! @search(by: [exact, term, fulltext, regexp])
+
+    "Associated country codes"
+    countryCodes: [String!]
+
+    "Year (inclusive) in which the record is considered valid"
+    validUntil: DateTime
+
+    "Records related to this record"
+    related: [Record!]
+}
+
+type Entity implements Record {
+
+    "The original name of the entity"
+    originalName: String @search(by: [exact, term, fulltext, regexp])
+    "The former name of the entity"
+    formerName: String! @search(by: [exact, term, fulltext, regexp])
+
+    "The jurisdiction of the entity"
+    jurisdiction: String @search(by: [exact])
+
+    "The company type, free-form text"
+    companyType: String @search(by: [exact, term])
+
+    "The full text address"
+    address: String @search(by: [exact, term, fulltext, regexp])
+
+    "The incorporation date"
+    incorporationDate: DateTime @search
+    "The inactivation date"
+    inactivationDate: DateTime @search
+    "The struck off date"
+    struckOffDate: DateTime @search
+    "The dormancy(?) date"
+    dormDate: DateTime @search
+
+    "The status of the entity (arbitrary)"
+    status: String @search(by: [exact, term])
+
+    "The service provider for the entity"
+    serviceProvider: String @search(by: [fulltext])
+}
+
+enum OtherType {
+    LLC
+    SoleOwnership
+    ForeignFormed
+}
+
+type Other implements Record {
+     "The former name of the entity"
+    formerName: String! @search(by: [exact, term, fulltext, regexp])
+
+    "The organization type of the Other record"
+    type: OtherType
+
+     "The incorporation date"
+    incorporationDate: DateTime @search
+    "The struck off date"
+    struckOffDate: DateTime @search
+    "The closed date"
+    closedDate: DateTime @search
+
+    "The jurisdiction of the entity"
+    jurisdiction: String @search(by: [exact])
+}
+
+enum IntermediaryStatus {
+    Active
+    Inactive
+    Prospect
+    Suspended
+    Delinquent
+    ActiveLegal
+    SuspendedLegal
+    UnrecoverableAccounts
+    ClientInRepresentativeTerritory
+}
+
+type Intermediary implements Record {
+
+    "The intermediary status"
+    status: IntermediaryStatus @search(by: [exact])
+
+    "The intermediary address"
+    address: String @search(by: [exact, term, fulltext, regexp])
+}
+
+type Officer implements Record {
+    
+}
