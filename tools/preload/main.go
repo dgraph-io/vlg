@@ -1,7 +1,6 @@
 package main
 
 import (
-	"bytes"
 	"fmt"
 	"io"
 	"log"
@@ -10,7 +9,6 @@ import (
 
 	"vlg/tools/model"
 
-	"github.com/davecgh/go-spew/spew"
 	"github.com/gocarina/gocsv"
 	"github.com/pkg/errors"
 	"github.com/storozhukBM/verifier"
@@ -72,6 +70,14 @@ func main() {
 		panic(err)
 	}
 
+	if true {
+		err = updateRelationships(store)
+		if err != nil {
+			panic(err)
+		}
+		os.Exit(0)
+	}
+
 	var wg sync.WaitGroup
 	for _, file := range files {
 		wg.Add(1)
@@ -94,20 +100,9 @@ func main() {
 	}
 	wg.Wait()
 
-	// retrieve the data
-	record, err := model.RecordByID(store, int64(240491946))
+	err = updateRelationships(store)
 	if err != nil {
 		panic(err)
-	}
-	switch typed := record.(type) {
-	case model.Entity:
-		spew.Dump(typed)
-	case model.Other:
-		spew.Dump(typed)
-	case model.Address:
-		spew.Dump(typed)
-	default:
-		panic(errors.Errorf("Unknown type %T", typed))
 	}
 }
 
@@ -202,25 +197,43 @@ func loadOthers(f *os.File, store *badgerhold.Store) error {
 	return nil
 }
 
-func mainOLD() {
-	b := bytes.NewBufferString(`node_id,name,type,incorporation_date,struck_off_date,closed_date,jurisdiction,jurisdiction_description,countries,country_codes,sourceID,valid_until,note
-85004929,ANTAM ENTERPRISES N.V.,LIMITED LIABILITY COMPANY,18-MAY-1983,,28-NOV-2012,AW,Aruba,,,Paradise Papers - Aruba corporate registry,Aruba corporate registry data is current through 2016,Closed date stands for Cancelled date.
-80004686,AAK Company Ltd.,,,,,,,Bermuda;Isle of Man,BMU;IMN,Paradise Papers - Appleby,Appleby data is current through 2014,
-`)
+const xactLimit = 20000
 
-	gocsv.SetCSVReader(func(in io.Reader) gocsv.CSVReader {
-		//return csv.NewReader(in)
-		return gocsv.LazyCSVReader(in) // Allows use of quotes in CSV
+func updateRelationships(store *badgerhold.Store) error {
+	q := &badgerhold.Query{}
+	n := 0
+	tx := store.Badger().NewTransaction(true)
+	//defer tx.Discard()
+	err := store.ForEach(q, func(record *model.Relationship) error {
+		n++
+		if n%xactLimit == 0 {
+			log.Printf("Updating relationships... progress %d", n)
+			tx = store.Badger().NewTransaction(true)
+		}
+		var err error
+		_, record.FromType, err = model.RecordByID(store, record.FromID)
+		if err != nil {
+			return err
+		}
+		_, record.ToType, err = model.RecordByID(store, record.ToID)
+		if err != nil {
+			return err
+		}
+		key := fmt.Sprintf("%d-%d", record.FromID, record.ToID)
+		err = store.TxUpdate(tx, key, record)
+		if n%xactLimit == 0 {
+			err := tx.Commit()
+			if err != nil {
+				return err
+			}
+			tx = store.Badger().NewTransaction(true)
+		}
+		return err
 	})
-
-	others := []*model.Other{}
-	if err := gocsv.Unmarshal(b, &others); err != nil {
-		panic(err)
+	if err != nil {
+		return err
 	}
-
-	for i := 0; i < len(others); i++ {
-		spew.Dump(others[i])
-	}
+	return tx.Commit()
 }
 
 // DirectoryExists return true if the path exists.
@@ -243,11 +256,4 @@ func fileExists(path string) bool {
 	} else {
 		panic(err)
 	}
-}
-
-func min(a, b int) int {
-	if a < b {
-		return a
-	}
-	return b
 }
