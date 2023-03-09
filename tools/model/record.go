@@ -148,7 +148,7 @@ func (array *StringArray) UnmarshalCSV(csv string) (err error) {
 	return nil
 }
 
-func RecordByID(store *badgerhold.Store, id int64) (any, error) {
+func RecordByID(store *badgerhold.Store, id int64) (any, string, error) {
 	a := []any{
 		Entity{},
 		Other{},
@@ -158,21 +158,29 @@ func RecordByID(store *badgerhold.Store, id int64) (any, error) {
 	}
 	for i := range a {
 		elemType := reflect.TypeOf(a[i])
-		elemSlice := reflect.MakeSlice(reflect.SliceOf(elemType), 0, 0)
-		x := reflect.New(elemSlice.Type())
-		x.Elem().Set(elemSlice)
-		err := store.Find(x.Interface(), badgerhold.Where("NodeID").Eq(id))
+		elem := reflect.New(elemType)
+		record := elem.Interface()
+		err := store.Get(id, record)
 		if err != nil {
-			return nil, err
+			if err == badgerhold.ErrNotFound {
+				continue
+			}
+			return nil, "", err
 		}
-		switch x.Elem().Len() {
-		case 0:
-			continue
-		case 1:
-			return x.Elem().Index(0).Interface(), nil
+		switch t := record.(type) {
+		case *Entity:
+			return record.(*Entity), "entity", nil
+		case *Other:
+			return record.(*Other), "other", nil
+		case *Address:
+			return record.(*Address), "address", nil
+		case *Intermediary:
+			return record.(*Intermediary), "intermediary", nil
+		case *Officer:
+			return record.(*Officer), "officer", nil
 		default:
-			return nil, errors.New("multiple records found")
+			return nil, "", errors.Errorf("unknown record type %s", t)
 		}
 	}
-	return nil, errors.New("no record found")
+	return nil, "", errors.New("no record found")
 }
