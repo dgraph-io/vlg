@@ -5,6 +5,9 @@ enum Source {
     BahamasLeak
 }
 
+"""
+Record is the base type for all records in the graph.
+"""
 interface Record {
     id: ID!
 
@@ -13,7 +16,7 @@ interface Record {
     "The ICIJ internal ID"
     internalID: Int! @search
     "The record source"
-    sourceID: Source! @search(by: [exact])
+    sourceID: String! @search(by: [exact])
     "Notes about the record"
     notes: String @search(by: [fulltext])
 
@@ -30,6 +33,9 @@ interface Record {
     related: [Record!]
 }
 
+"""
+Entity represents companies, trusts and foundations.
+"""
 type Entity implements Record {
 
     "The original name of the entity"
@@ -60,6 +66,9 @@ type Entity implements Record {
 
     "The service provider for the entity"
     serviceProvider: String @search(by: [fulltext])
+
+    "Addresses associated with the entity"
+    addresses: [Address!] @hasInverse(field: entities)
 }
 
 enum OtherType {
@@ -68,6 +77,9 @@ enum OtherType {
     ForeignFormed
 }
 
+"""
+Other represents other companies, trusts and foundations.
+"""
 type Other implements Record {
      "The former name of the entity"
     formerName: String! @search(by: [exact, term, fulltext, regexp])
@@ -84,6 +96,9 @@ type Other implements Record {
 
     "The jurisdiction of the entity"
     jurisdiction: String @search(by: [exact])
+
+    "Addresses associated with the other"
+    addresses: [Address!] @hasInverse(field: others)
 }
 
 enum IntermediaryStatus {
@@ -98,15 +113,46 @@ enum IntermediaryStatus {
     ClientInRepresentativeTerritory
 }
 
+"""
+Intermediary represents people or entities that intermediate.
+"""
 type Intermediary implements Record {
 
     "The intermediary status"
     status: IntermediaryStatus @search(by: [exact])
 
-    "The intermediary address"
+    "The intermediary address, TODO: verify intermediaries have relationships to addresses"
     address: String @search(by: [exact, term, fulltext, regexp])
+
+    "Addresses associated with the intermediary"
+    addresses: [Address!] @hasInverse(field: intermediaries)
 }
 
+"""
+Officer represents people that are officers of entities or others.
+"""
 type Officer implements Record {
-    
+
+   "Addresses associated with the officer"
+   addresses: [Address!] @hasInverse(field: officers)
+}
+
+"""
+Address represents physical addresses.
+"""
+type Address implements Record {
+    "The full text address"
+    address: String @search(by: [exact, term, fulltext, regexp])
+
+    "Officers associated with the address"
+    officers: [Officer!] @hasInverse(field: addresses)
+    "Entities associated with the address"
+    entities: [Entity!] @hasInverse(field: addresses)
+    "Others associated with the address"
+    others: [Other!] @hasInverse(field: addresses)
+    "Intermediaries associated with the address"
+    intermediaries: [Intermediary!] @hasInverse(field: addresses)
+
+    "The geolocation of the address"
+    location: Point @search
 }
