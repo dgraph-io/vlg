@@ -9,6 +9,7 @@ import (
 
 	"vlg/tools/model"
 
+	"github.com/davecgh/go-spew/spew"
 	"github.com/gocarina/gocsv"
 	"github.com/pkg/errors"
 	"github.com/storozhukBM/verifier"
@@ -17,12 +18,15 @@ import (
 
 const dataDirectory = "data"
 
+var typeMap sync.Map
+
 func main() {
 	verify := verifier.New()
 	verify.That(len(os.Args) == 2, "Usage: preload <directory>")
 	verify.That(directoryExists(os.Args[1]), "Directory does not exist: "+os.Args[1])
 	verify.PanicOnError()
 
+	typeMap = sync.Map{}
 	files := []struct {
 		name string
 		f    func(*os.File, *badgerhold.Store) error
@@ -47,10 +51,6 @@ func main() {
 			"nodes-others.csv",
 			loadOthers,
 		},
-		{
-			"relationships.csv",
-			loadRelationships,
-		},
 	}
 	for _, file := range files {
 		verify.That(fileExists(os.Args[1]+"/"+file.name), "File does not exist: "+file.name)
@@ -61,21 +61,12 @@ func main() {
 		return gocsv.LazyCSVReader(in) // Allows use of quotes in CSV
 	})
 
-	options := badgerhold.DefaultOptions
-	options.Dir = dataDirectory
-	options.ValueDir = dataDirectory
-	store, err := badgerhold.Open(options)
-	defer store.Close()
+	store, err := model.GetStore(false)
+	defer func() {
+		_ = store.Close()
+	}()
 	if err != nil {
 		panic(err)
-	}
-
-	if true {
-		err = updateRelationships(store)
-		if err != nil {
-			panic(err)
-		}
-		os.Exit(0)
 	}
 
 	var wg sync.WaitGroup
@@ -100,10 +91,24 @@ func main() {
 	}
 	wg.Wait()
 
-	err = updateRelationships(store)
+	// Load relationships
+	log.Println("Processing relationships.csv")
+	f, err := os.OpenFile(os.Args[1]+"/relationships.csv", os.O_RDWR|os.O_CREATE, os.ModePerm)
 	if err != nil {
 		panic(err)
 	}
+	defer f.Close()
+	err = loadRelationships(f, store)
+	if err != nil {
+		panic(err)
+	}
+
+	/*
+		err = updateRelationships(store)
+		if err != nil {
+			panic(err)
+		}
+	*/
 }
 
 func loadAddresses(f *os.File, store *badgerhold.Store) error {
@@ -117,6 +122,7 @@ func loadAddresses(f *os.File, store *badgerhold.Store) error {
 		if err != nil {
 			return err
 		}
+		typeMap.Store(addresses[i].NodeID, "address")
 	}
 	return nil
 }
@@ -132,6 +138,7 @@ func loadEntities(f *os.File, store *badgerhold.Store) error {
 		if err != nil {
 			return err
 		}
+		typeMap.Store(entities[i].NodeID, "entity")
 	}
 	return nil
 }
@@ -147,6 +154,7 @@ func loadIntermediaries(f *os.File, store *badgerhold.Store) error {
 		if err != nil {
 			return err
 		}
+		typeMap.Store(intermediaries[i].NodeID, "intermediary")
 	}
 	return nil
 }
@@ -162,22 +170,7 @@ func loadOfficers(f *os.File, store *badgerhold.Store) error {
 		if err != nil {
 			return err
 		}
-	}
-	return nil
-}
-
-func loadRelationships(f *os.File, store *badgerhold.Store) error {
-	relationships := []*model.Relationship{}
-	if err := gocsv.UnmarshalFile(f, &relationships); err != nil {
-		return err
-	}
-	log.Printf("Upserting %d relationships...", len(relationships))
-	for i := range relationships {
-		key := fmt.Sprintf("%d-%d", relationships[i].FromID, relationships[i].ToID)
-		err := store.Upsert(key, relationships[i])
-		if err != nil {
-			return err
-		}
+		typeMap.Store(officers[i].NodeID, "officer")
 	}
 	return nil
 }
@@ -193,47 +186,58 @@ func loadOthers(f *os.File, store *badgerhold.Store) error {
 		if err != nil {
 			return err
 		}
+		typeMap.Store(others[i].NodeID, "other")
 	}
 	return nil
 }
 
-const xactLimit = 20000
-
-func updateRelationships(store *badgerhold.Store) error {
-	q := &badgerhold.Query{}
-	n := 0
-	tx := store.Badger().NewTransaction(true)
-	//defer tx.Discard()
-	err := store.ForEach(q, func(record *model.Relationship) error {
-		n++
-		if n%xactLimit == 0 {
-			log.Printf("Updating relationships... progress %d", n)
-			tx = store.Badger().NewTransaction(true)
-		}
-		var err error
-		_, record.FromType, err = model.RecordByID(store, record.FromID)
-		if err != nil {
-			return err
-		}
-		_, record.ToType, err = model.RecordByID(store, record.ToID)
-		if err != nil {
-			return err
-		}
-		key := fmt.Sprintf("%d-%d", record.FromID, record.ToID)
-		err = store.TxUpdate(tx, key, record)
-		if n%xactLimit == 0 {
-			err := tx.Commit()
-			if err != nil {
-				return err
-			}
-			tx = store.Badger().NewTransaction(true)
-		}
-		return err
-	})
-	if err != nil {
+func loadRelationships(f *os.File, store *badgerhold.Store) error {
+	relationships := []*model.Relationship{}
+	if err := gocsv.UnmarshalFile(f, &relationships); err != nil {
 		return err
 	}
-	return tx.Commit()
+	relMap := make(map[string]int)
+	log.Printf("Upserting %d relationships...", len(relationships))
+	for i := range relationships {
+		var err error
+		var ok bool
+		key := fmt.Sprintf("%d-%d", relationships[i].FromID, relationships[i].ToID)
+		record := relationships[i]
+		t, ok := typeMap.Load(record.FromID)
+		if !ok {
+			return errors.Errorf("Finding FromID, From: %d To: %d Type %s", record.FromID, record.ToID, record.RelationshipType)
+		}
+		record.FromType = t.(string)
+		t, ok = typeMap.Load(record.ToID)
+		if !ok {
+			return errors.Errorf("Finding ToID, From: %d To: %d Type %s", record.FromID, record.ToID, record.RelationshipType)
+		}
+		record.ToType = t.(string)
+		if record.ToType == "" || record.FromType == "" {
+			spew.Dump(record)
+			return errors.Errorf("Missing type %d %d %s %s", record.FromID, record.ToID, record.FromType, record.ToType)
+		}
+		err = store.Upsert(key, record)
+		if err != nil {
+			return err
+		}
+		key = record.FromType + " -> " + record.ToType + " -> " + record.RelationshipType
+		_, ok = relMap[key]
+		if !ok {
+			relMap[key] = 1
+		} else {
+			relMap[key]++
+		}
+	}
+	foundRelationships := 0
+	for k, v := range relMap {
+		fmt.Printf("%s: %d\n", k, v)
+		foundRelationships += v
+	}
+	if len(relationships) != foundRelationships {
+		return errors.Errorf("Relationships mismatch, processed: %d paired: %d", len(relationships), foundRelationships)
+	}
+	return nil
 }
 
 // DirectoryExists return true if the path exists.
