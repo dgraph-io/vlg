@@ -29,8 +29,15 @@ interface Record {
     "Year (inclusive) in which the record is considered valid"
     validUntil: DateTime
 
-    "Records related to this record"
-    related: [Record!]
+    "Addresses associated with the record"
+    address: [Address!]
+
+    "Records that are the same as the record"
+    sameAs: [Record!]
+
+    "Records that are similar to the record"
+    similarTo: [Record!]
+
 }
 
 """
@@ -67,8 +74,10 @@ type Entity implements Record {
     "The service provider for the entity"
     serviceProvider: String @search(by: [fulltext])
 
-    "Addresses associated with the entity"
-    addresses: [Address!] @hasInverse(field: entities)
+
+    "Officers associated with the entity"
+    officerOf: [Record!]
+
 }
 
 enum OtherType {
@@ -96,9 +105,6 @@ type Other implements Record {
 
     "The jurisdiction of the entity"
     jurisdiction: String @search(by: [exact])
-
-    "Addresses associated with the other"
-    addresses: [Address!] @hasInverse(field: others)
 }
 
 enum IntermediaryStatus {
@@ -120,12 +126,6 @@ type Intermediary implements Record {
 
     "The intermediary status"
     status: IntermediaryStatus @search(by: [exact])
-
-    "The intermediary address, TODO: verify intermediaries have relationships to addresses"
-    address: String @search(by: [exact, term, fulltext, regexp])
-
-    "Addresses associated with the intermediary"
-    addresses: [Address!] @hasInverse(field: intermediaries)
 }
 
 """
@@ -133,8 +133,7 @@ Officer represents people that are officers of entities or others.
 """
 type Officer implements Record {
 
-   "Addresses associated with the officer"
-   addresses: [Address!] @hasInverse(field: officers)
+
 }
 
 """
@@ -144,14 +143,11 @@ type Address implements Record {
     "The full text address"
     address: String @search(by: [exact, term, fulltext, regexp])
 
-    "Officers associated with the address"
-    officers: [Officer!] @hasInverse(field: addresses)
-    "Entities associated with the address"
-    entities: [Entity!] @hasInverse(field: addresses)
-    "Others associated with the address"
-    others: [Other!] @hasInverse(field: addresses)
-    "Intermediaries associated with the address"
-    intermediaries: [Intermediary!] @hasInverse(field: addresses)
+    "Records this address is related to"
+    registeredTo: [Record!]
+
+    "Address that is the same as this address"
+    sameAs: [Address!]
 
     "The geolocation of the address"
     location: Point @search
