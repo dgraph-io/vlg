@@ -5,13 +5,10 @@ import (
 	"os"
 	"strconv"
 
-	"vlg/tools/model"
-
 	"github.com/davecgh/go-spew/spew"
-	"github.com/timshannon/badgerhold/v4"
-)
 
-const dataDirectory = "data"
+	"vlg/tools/model"
+)
 
 func main() {
 
@@ -24,11 +21,7 @@ func main() {
 		panic(err)
 	}
 
-	options := badgerhold.DefaultOptions
-	options.Dir = dataDirectory
-	options.ValueDir = dataDirectory
-	options.ReadOnly = true
-	store, err := badgerhold.Open(options)
+	store, err := model.GetStore(true)
 	defer func() {
 		_ = store.Close()
 	}()
