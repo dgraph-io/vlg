@@ -1,5 +1,7 @@
 package model
 
+import "fmt"
+
 type Entity struct {
 	Record
 
@@ -14,4 +16,8 @@ type Entity struct {
 	DormDate          DateTime `csv:"dorm_date"`
 	Status            string   `csv:"status"`
 	ServiceProvider   string   `csv:"service_provider"`
+}
+
+func (e *Entity) String() string {
+	return fmt.Sprintf("Entity %d '%s'", e.NodeID, e.Name)
 }

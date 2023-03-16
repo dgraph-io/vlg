@@ -1,5 +1,7 @@
 package model
 
+import "fmt"
+
 type Other struct {
 	Record
 
@@ -9,4 +11,8 @@ type Other struct {
 	StruckOffDate     DateTime `csv:"struck_off_date"`
 	ClosedDate        DateTime `csv:"closed_date"`
 	Jurisdiction      string   `csv:"jurisdiction"`
+}
+
+func (other *Other) String() string {
+	return fmt.Sprintf("Other %d '%s'", other.NodeID, other.Name)
 }
