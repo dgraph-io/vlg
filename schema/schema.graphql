@@ -26,18 +26,32 @@ interface Record {
     "Associated country codes"
     countryCodes: [String!]
 
-    "Year (inclusive) in which the record is considered valid"
+    "Year (inclusive) through which the record is considered valid"
     validUntil: DateTime
 
     "Addresses associated with the record"
-    address: [Address!]
+    hasAddress: [Address!]
+    "Records that this address is registered"
+    addressFor: [Record!]
 
-    "Records that are the same as the record"
+    "Records that are the same as this record"
     sameAs: [Record!]
-
-    "Records that are similar to the record"
+    "Record that have the same name as this record, but are not verified to be the same"
+    sameNameAs: [Record!]
+    "Records that are similar to this record"
     similarTo: [Record!]
+    "Records that are connected in some way to this record"
+    connectedTo: [Record!]
 
+    "The record for which this record is an intermediary of"
+    intermediaryOf: [Record!]
+    "The record for which this record is an intermediary for"
+    intermediaryFor: [Record!]
+
+    "The record for which this record is an officer of"
+    officerOf: [Record!]
+    "The record for which this record is an officer for"
+    officerFor: [Record!]
 }
 
 """
@@ -73,11 +87,6 @@ type Entity implements Record {
 
     "The service provider for the entity"
     serviceProvider: String @search(by: [fulltext])
-
-
-    "Officers associated with the entity"
-    officerOf: [Record!]
-
 }
 
 enum OtherType {
@@ -132,8 +141,7 @@ type Intermediary implements Record {
 Officer represents people that are officers of entities or others.
 """
 type Officer implements Record {
-
-
+    _: Boolean
 }
 
 """
@@ -142,12 +150,6 @@ Address represents physical addresses.
 type Address implements Record {
     "The full text address"
     address: String @search(by: [exact, term, fulltext, regexp])
-
-    "Records this address is related to"
-    registeredTo: [Record!]
-
-    "Address that is the same as this address"
-    sameAs: [Address!]
 
     "The geolocation of the address"
     location: Point @search
