@@ -12,11 +12,11 @@ interface Record {
     id: ID!
 
     "The offshore links 'node_id'"
-    nodeID: Int! @id
+    nodeID: String! @id
     "The ICIJ internal ID"
-    internalID: Int! @search
+    internalID: String @search(by: [exact])
     "The record source"
-    sourceID: String! @search(by: [exact])
+    sourceID: String @search(by: [exact])
     "Notes about the record"
     notes: String @search(by: [fulltext])
 
@@ -30,9 +30,19 @@ interface Record {
     validUntil: DateTime
 
     "Addresses associated with the record"
-    hasAddress: [Address!]
-    "Records that this address is registered"
+    hasAddress: [Record!]
+    "Records to which this Address is registered"
     addressFor: [Record!]
+
+    "Intermediaries associated with the record"
+    hasIntermediary: [Record!]
+    "Records for which this Intermediary is associated"
+    intermediaryFor: [Record!]
+
+    "Officers associated with the record"
+    hasOfficer: [Record!]
+    "Records for which this Officer is associated"
+    officerFor: [Record!]
 
     "Records that are the same as this record"
     sameAs: [Record!]
@@ -42,16 +52,6 @@ interface Record {
     similarTo: [Record!]
     "Records that are connected in some way to this record"
     connectedTo: [Record!]
-
-    "The record for which this record is an intermediary of"
-    intermediaryOf: [Record!]
-    "The record for which this record is an intermediary for"
-    intermediaryFor: [Record!]
-
-    "The record for which this record is an officer of"
-    officerOf: [Record!]
-    "The record for which this record is an officer for"
-    officerFor: [Record!]
 }
 
 """
@@ -148,8 +148,11 @@ type Officer implements Record {
 Address represents physical addresses.
 """
 type Address implements Record {
-    "The full text address"
+    "The full text address, unstructured. Record.name is the normalized field"
     address: String @search(by: [exact, term, fulltext, regexp])
+
+    "The source of the geolocation data for the address"
+    geoSource: String @search(by: [term])
 
     "The geolocation of the address"
     location: Point @search
