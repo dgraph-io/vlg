@@ -50,7 +50,7 @@ officer -> intermediary -> officer_of: 1
 officer -> officer -> officer_of: 6
 officer -> other -> officer_of: 1718
 
-// TODOS -----------------------------------
+// TODO -----------------------------------
 
 // TODO: What does _underlying_ refer to?
 officer -> officer -> underlying: 1238
