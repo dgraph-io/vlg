@@ -1,8 +1,11 @@
 package model
 
 import (
+	"fmt"
 	"testing"
 	"time"
+
+	country "github.com/mikekonan/go-countries"
 )
 
 func TestDateTime_UnmarshalCSV(t *testing.T) {
@@ -32,5 +35,11 @@ func TestDateTime_UnmarshalCSV(t *testing.T) {
 				t.Errorf("DateTime.UnmarshalCSV() error = %v, wantErr %v", err, tt.wantErr)
 			}
 		})
+	}
+}
+
+func TestCountry(t *testing.T) {
+	if val, ok := country.ByAlpha3Code(""); !ok {
+		fmt.Println(val)
 	}
 }
