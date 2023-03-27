@@ -10,6 +10,8 @@ import (
 	"vlg/tools/model"
 )
 
+// search for records.
+// example: go run search/main.go relationship 'entity->entity->officer_of'
 func main() {
 
 	if len(os.Args) != 3 {

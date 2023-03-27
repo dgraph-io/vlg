@@ -1,22 +1,22 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"os"
 	"strconv"
 
-	"github.com/davecgh/go-spew/spew"
-
 	"vlg/tools/model"
 )
 
+// lookup retrieves a record from the badger store by ID.
 func main() {
 
 	if len(os.Args) != 2 {
 		fmt.Println("Usage: lookup <nodeID>")
 		os.Exit(1)
 	}
-	nodeID, err := strconv.ParseInt(os.Args[1], 10, 64)
+	_, err := strconv.ParseInt(os.Args[1], 10, 64)
 	if err != nil {
 		panic(err)
 	}
@@ -30,9 +30,11 @@ func main() {
 	}
 
 	// retrieve the data
-	record, _, err := model.RecordByID(store, nodeID)
+	record, recordType, err := model.RecordByID(store, os.Args[1])
 	if err != nil {
 		panic(err)
 	}
-	spew.Dump(record)
+	fmt.Println("Found record of type", recordType)
+	b, _ := json.MarshalIndent(record, "", "  ")
+	fmt.Println(string(b))
 }

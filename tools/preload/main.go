@@ -16,10 +16,9 @@ import (
 	"github.com/timshannon/badgerhold/v4"
 )
 
-const dataDirectory = "data"
-
 var typeMap sync.Map
 
+// preload loads the data from the CSV files into the badgerhold store
 func main() {
 	verify := verifier.New()
 	verify.That(len(os.Args) == 2, "Usage: preload <directory>")
@@ -102,13 +101,6 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-
-	/*
-		err = updateRelationships(store)
-		if err != nil {
-			panic(err)
-		}
-	*/
 }
 
 func loadAddresses(f *os.File, store *badgerhold.Store) error {
@@ -201,22 +193,22 @@ func loadRelationships(f *os.File, store *badgerhold.Store) error {
 	for i := range relationships {
 		var err error
 		var ok bool
-		key := fmt.Sprintf("%d-%d", relationships[i].FromID, relationships[i].ToID)
 		record := relationships[i]
 		t, ok := typeMap.Load(record.FromID)
 		if !ok {
-			return errors.Errorf("Finding FromID, From: %d To: %d Type %s", record.FromID, record.ToID, record.RelationshipType)
+			return errors.Errorf("Finding FromID, From: %s To: %s Type %s", record.FromID, record.ToID, record.RelationshipType)
 		}
 		record.FromType = t.(string)
 		t, ok = typeMap.Load(record.ToID)
 		if !ok {
-			return errors.Errorf("Finding ToID, From: %d To: %d Type %s", record.FromID, record.ToID, record.RelationshipType)
+			return errors.Errorf("Finding ToID, From: %s To: %s Type %s", record.FromID, record.ToID, record.RelationshipType)
 		}
 		record.ToType = t.(string)
 		if record.ToType == "" || record.FromType == "" {
 			spew.Dump(record)
-			return errors.Errorf("Missing type %d %d %s %s", record.FromID, record.ToID, record.FromType, record.ToType)
+			return errors.Errorf("Missing type %s %s %s %s", record.FromID, record.ToID, record.FromType, record.ToType)
 		}
+		key := fmt.Sprintf("%s-%s-%s", record.FromID, record.ToID, record.RelationshipType)
 		err = store.Upsert(key, record)
 		if err != nil {
 			return err
