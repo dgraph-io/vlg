@@ -5,9 +5,9 @@ import (
 	"math/rand"
 	"os"
 
-	"vlg/tools/model"
-
 	"github.com/timshannon/badgerhold/v4"
+
+	"vlg/tools/model"
 )
 
 const exportDir = "../rdf-subset"
