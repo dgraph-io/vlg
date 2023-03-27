@@ -21,13 +21,13 @@ interface Record {
     notes: String @search(by: [fulltext])
 
     "The associated name"
-    name: String! @search(by: [exact, term, fulltext, regexp])
+    name: String! @search(by: [term, fulltext, regexp])
 
     "Associated country codes"
-    countryCodes: [String!]
+    countryCodes: [String!] @search(by: [exact])
 
     "Year (inclusive) through which the record is considered valid"
-    validUntil: DateTime
+    validUntil: DateTime @search
 
     "Addresses associated with the record"
     hasAddress: [Record!]
@@ -41,7 +41,7 @@ interface Record {
 
     "Officers associated with the record"
     hasOfficer: [Record!]
-    "Records for which this Officer is associated"
+    "Records for which this officer is associated"
     officerFor: [Record!]
 
     "Records that are the same as this record"
