@@ -16,15 +16,27 @@ type Location struct {
 type Address struct {
 	Record
 
-	Address   string    `csv:"address" predicate:"Address.address"`
+	Address string `csv:"address" predicate:"Address.address"`
+
+	// If true, the address is not resolved to a location
+	Unresolved bool
+	// Level of confidence in the geo-encoded location
+	Confidence float64
+
+	// The source of the geo-encoding
 	GeoSource string    `predicate:"Address.geoSource"`
 	Location  *Location `json:"location"`
 }
 
 func (a *Address) Normalize() {
 	a.Record.Normalize()
-	if a.Name == "" {
+	if a.Name == "" || a.Name == "None" {
 		a.Name = a.Address
+	}
+	if a.Name == "None" {
+		a.Unresolved = true
+		a.Confidence = 0.0
+		a.Name = fmt.Sprintf("Unknown Address %s", a.NodeID)
 	}
 }
 
