@@ -46,6 +46,20 @@ func (obj *Record) Normalize() {
 			obj.CountryCodes[i] = "XXX"
 		}
 	}
+	switch {
+	case strings.Contains(obj.SourceID, "Panama Papers"):
+		obj.SourceID = "PanamaPapers"
+	case strings.Contains(obj.SourceID, "Bahamas Leaks"):
+		obj.SourceID = "BahamasLeaks"
+	case strings.Contains(obj.SourceID, "Paradise Papers"):
+		obj.SourceID = "ParadisePapers"
+	case strings.Contains(obj.SourceID, "Pandora Papers"):
+		obj.SourceID = "PandoraPapers"
+	case strings.Contains(obj.SourceID, "Offshore Leaks"):
+		obj.SourceID = "OffshoreLeaks"
+	default:
+		obj.SourceID = "OffshoreLeaks"
+	}
 }
 
 func (obj *Record) RDFID() string {

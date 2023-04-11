@@ -1,8 +1,12 @@
+"""
+Source is the source of the data.
+"""
 enum Source {
     PandoraPapers
     ParadisePapers
     OffshoreLeaks
-    BahamasLeak
+    BahamasLeaks
+    PanamaPapers
 }
 
 """
@@ -16,7 +20,7 @@ interface Record {
     "The ICIJ internal ID"
     internalID: String @search(by: [exact])
     "The record source"
-    sourceID: String @search(by: [exact])
+    sourceID: Source! @search(by: [exact])
     "Notes about the record"
     notes: String @search(by: [fulltext])
 

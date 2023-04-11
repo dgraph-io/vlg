@@ -21,8 +21,9 @@ func TestAddress_ToRDF(t *testing.T) {
 			name: "valid address",
 			fields: fields{
 				Record: Record{
-					NodeID: "2",
-					Name:   "123 Main St, Anytown, USA",
+					NodeID:   "2",
+					Name:     "123 Main St, Anytown, USA",
+					SourceID: "Paradise Papers - Malta corporate registry",
 				},
 				Address:   "123 Main St, Anytown, USA",
 				GeoSource: "google",
@@ -35,6 +36,7 @@ func TestAddress_ToRDF(t *testing.T) {
 _:2 <dgraph.type> "Record" .
 _:2 <Record.nodeID> "2"^^<xs:string> .
 _:2 <Record.name> "123 Main St, Anytown, USA"^^<xs:string> .
+_:2 <Record.sourceID> "ParadisePapers"^^<xs:string> .
 _:2 <Address.geoSource> "google"^^<xs:string> .
 _:2 <Address.location> "{'type':'Point','coordinates':[-122.4220186,37.7723180]}"^^<geo:geojson> .
 `,
@@ -43,7 +45,8 @@ _:2 <Address.location> "{'type':'Point','coordinates':[-122.4220186,37.7723180]}
 			name: "empty name",
 			fields: fields{
 				Record: Record{
-					NodeID: "2",
+					NodeID:   "2",
+					SourceID: "Bahamas Leaks",
 				},
 				Address:   "123 Main St, Anytown, USA",
 				GeoSource: "google",
@@ -56,6 +59,7 @@ _:2 <Address.location> "{'type':'Point','coordinates':[-122.4220186,37.7723180]}
 _:2 <dgraph.type> "Record" .
 _:2 <Record.nodeID> "2"^^<xs:string> .
 _:2 <Record.name> "123 Main St, Anytown, USA"^^<xs:string> .
+_:2 <Record.sourceID> "BahamasLeaks"^^<xs:string> .
 _:2 <Address.geoSource> "google"^^<xs:string> .
 _:2 <Address.location> "{'type':'Point','coordinates':[-122.4220186,37.7723180]}"^^<geo:geojson> .
 `,
@@ -64,7 +68,8 @@ _:2 <Address.location> "{'type':'Point','coordinates':[-122.4220186,37.7723180]}
 			name: "empty name and address",
 			fields: fields{
 				Record: Record{
-					NodeID: "2",
+					NodeID:   "2",
+					SourceID: "",
 				},
 				GeoSource: "google",
 				Location: &Location{
@@ -76,6 +81,7 @@ _:2 <Address.location> "{'type':'Point','coordinates':[-122.4220186,37.7723180]}
 _:2 <dgraph.type> "Record" .
 _:2 <Record.nodeID> "2"^^<xs:string> .
 _:2 <Record.name> "Unknown Address 2"^^<xs:string> .
+_:2 <Record.sourceID> "Unknown"^^<xs:string> .
 _:2 <Address.geoSource> "google"^^<xs:string> .
 _:2 <Address.location> "{'type':'Point','coordinates':[-122.4220186,37.7723180]}"^^<geo:geojson> .
 `,

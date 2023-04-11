@@ -32,8 +32,9 @@ func TestEntity_ToRDF(t *testing.T) {
 			name: "valid entity",
 			fields: fields{
 				Record: Record{
-					NodeID: "1",
-					Name:   "Acme Inc.",
+					NodeID:   "1",
+					Name:     "Acme Inc.",
+					SourceID: "Paradise Papers - Malta corporate registry",
 				},
 				OriginalName:      "Acme Inc.",
 				FormerName:        "Acme Inc.",
@@ -48,6 +49,7 @@ func TestEntity_ToRDF(t *testing.T) {
 _:1 <dgraph.type> "Record" .
 _:1 <Record.nodeID> "1"^^<xs:string> .
 _:1 <Record.name> "Acme Inc."^^<xs:string> .
+_:1 <Record.sourceID> "ParadisePapers"^^<xs:string> .
 _:1 <Entity.originalName> "Acme Inc."^^<xs:string> .
 _:1 <Entity.formerName> "Acme Inc."^^<xs:string> .
 _:1 <Entity.jurisdiction> "US"^^<xs:string> .
