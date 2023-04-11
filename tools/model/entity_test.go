@@ -46,17 +46,16 @@ func TestEntity_ToRDF(t *testing.T) {
 			},
 			wantW: `_:1 <dgraph.type> "Entity" .
 _:1 <dgraph.type> "Record" .
-_:1 <Record.nodeID> "1"^^<xsd:integer> .
-_:1 <Record.sourceID> "0"^^<xsd:integer> .
-_:1 <Record.name> "Acme Inc."^^<xsd:string> .
-_:1 <Entity.originalName> "Acme Inc."^^<xsd:string> .
-_:1 <Entity.formerName> "Acme Inc."^^<xsd:string> .
-_:1 <Entity.jurisdiction> "US"^^<xsd:string> .
-_:1 <Entity.companyType> "LLC"^^<xsd:string> .
-_:1 <Entity.address> "123 Main St, Anytown, USA"^^<xsd:string> .
-_:1 <Entity.incorporationDate> "2020-01-01 00:00:00 +0000 UTC"^^<xsd:string> .
-_:1 <Entity.status> "active"^^<xsd:string> .
-_:1 <Entity.serviceProvider> "Acme SP Inc."^^<xsd:string> .
+_:1 <Record.nodeID> "1"^^<xs:string> .
+_:1 <Record.name> "Acme Inc."^^<xs:string> .
+_:1 <Entity.originalName> "Acme Inc."^^<xs:string> .
+_:1 <Entity.formerName> "Acme Inc."^^<xs:string> .
+_:1 <Entity.jurisdiction> "US"^^<xs:string> .
+_:1 <Entity.companyType> "LLC"^^<xs:string> .
+_:1 <Entity.address> "123 Main St, Anytown, USA"^^<xs:string> .
+_:1 <Entity.incorporationDate> "2020-01-01 00:00:00 +0000 UTC"^^<xs:string> .
+_:1 <Entity.status> "active"^^<xs:string> .
+_:1 <Entity.serviceProvider> "Acme SP Inc."^^<xs:string> .
 `,
 		},
 	}

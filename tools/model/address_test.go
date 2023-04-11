@@ -33,11 +33,50 @@ func TestAddress_ToRDF(t *testing.T) {
 			},
 			wantW: `_:2 <dgraph.type> "Address" .
 _:2 <dgraph.type> "Record" .
-_:2 <Record.nodeID> "2"^^<xsd:integer> .
-_:2 <Record.sourceID> "0"^^<xsd:integer> .
-_:2 <Record.name> "123 Main St, Anytown, USA"^^<xsd:string> .
-_:2 <Address.address> "123 Main St, Anytown, USA"^^<xsd:string> .
-_:2 <Address.geoSource> "google"^^<xsd:string> .
+_:2 <Record.nodeID> "2"^^<xs:string> .
+_:2 <Record.name> "123 Main St, Anytown, USA"^^<xs:string> .
+_:2 <Address.geoSource> "google"^^<xs:string> .
+_:2 <Address.location> "{'type':'Point','coordinates':[-122.4220186,37.7723180]}"^^<geo:geojson> .
+`,
+		},
+		{
+			name: "empty name",
+			fields: fields{
+				Record: Record{
+					NodeID: "2",
+				},
+				Address:   "123 Main St, Anytown, USA",
+				GeoSource: "google",
+				Location: &Location{
+					Lat:  37.772318,
+					Long: -122.4220186,
+				},
+			},
+			wantW: `_:2 <dgraph.type> "Address" .
+_:2 <dgraph.type> "Record" .
+_:2 <Record.nodeID> "2"^^<xs:string> .
+_:2 <Record.name> "123 Main St, Anytown, USA"^^<xs:string> .
+_:2 <Address.geoSource> "google"^^<xs:string> .
+_:2 <Address.location> "{'type':'Point','coordinates':[-122.4220186,37.7723180]}"^^<geo:geojson> .
+`,
+		},
+		{
+			name: "empty name and address",
+			fields: fields{
+				Record: Record{
+					NodeID: "2",
+				},
+				GeoSource: "google",
+				Location: &Location{
+					Lat:  37.772318,
+					Long: -122.4220186,
+				},
+			},
+			wantW: `_:2 <dgraph.type> "Address" .
+_:2 <dgraph.type> "Record" .
+_:2 <Record.nodeID> "2"^^<xs:string> .
+_:2 <Record.name> "Unknown Address 2"^^<xs:string> .
+_:2 <Address.geoSource> "google"^^<xs:string> .
 _:2 <Address.location> "{'type':'Point','coordinates':[-122.4220186,37.7723180]}"^^<geo:geojson> .
 `,
 		},

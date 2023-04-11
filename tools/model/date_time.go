@@ -10,7 +10,7 @@ import (
 	"golang.org/x/text/language"
 )
 
-// DateTime is a wrapper around time.Time that can be unmarshalled from a CSV.
+// DateTime is a wrapper around time.Time that can be unmarshaled from a CSV.
 // The gocarina/gocsv package supports the declaration of UnmarshalCSV methods.
 type DateTime struct {
 	time.Time

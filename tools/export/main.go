@@ -14,7 +14,7 @@ import (
 
 const exportDir = "../rdf"
 
-// exports all records to RDF files.
+// Exports all records to RDF files.
 func main() {
 
 	now := time.Now()

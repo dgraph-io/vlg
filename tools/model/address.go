@@ -40,6 +40,9 @@ func (a *Address) Normalize() {
 		a.Confidence = 0.0
 		a.Name = fmt.Sprintf("Unknown Address %s", a.NodeID)
 	}
+	if a.Name == a.Address {
+		a.Address = ""
+	}
 }
 
 func (a *Address) String() string {

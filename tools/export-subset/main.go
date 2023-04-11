@@ -13,7 +13,7 @@ import (
 const exportDir = "../rdf-subset"
 const exportCount = 50000
 
-// export a subset of the data to RDF files.
+// Export a subset of the data to RDF files.
 func main() {
 
 	store, err := model.GetStore(true)
@@ -39,8 +39,9 @@ func main() {
 		_ = f.Close()
 	}()
 
+	// randomly select relationships (note: seed hard-coded for reproducibility)
+	rand.Seed(42)
 	for n := 0; n < exportCount; n++ {
-		// randomly select a relationship
 		i := rand.Intn(int(count))
 		from, _, err := model.RecordByID(store, relationships[i].FromID)
 		if err != nil {

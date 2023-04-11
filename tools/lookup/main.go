@@ -9,7 +9,7 @@ import (
 	"vlg/tools/model"
 )
 
-// lookup retrieves a record from the badger store by ID.
+// Lookup retrieves a record from the badger store by ID.
 func main() {
 
 	if len(os.Args) != 2 {
