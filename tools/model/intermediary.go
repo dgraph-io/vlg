@@ -32,7 +32,7 @@ var intermediaryTypeLookup = map[string]string{
 
 func (intermediary *Intermediary) Normalize() {
 	intermediary.Record.Normalize()
-	if intermediary.Name == "" {
+	if intermediary.Name == "" || intermediary.Name == "None" {
 		intermediary.Name = fmt.Sprintf("Unknown Intermediary %s", intermediary.NodeID)
 	}
 	intermediary.Status = intermediaryTypeLookup[strings.ToLower(intermediary.Status)]
@@ -44,6 +44,7 @@ func (intermediary *Intermediary) String() string {
 
 func (intermediary *Intermediary) ToRDF(w io.Writer) {
 	id := intermediary.RDFID()
+	intermediary.Normalize()
 
 	fmt.Fprintf(w, "%s <dgraph.type> \"Intermediary\" .\n", id)
 	intermediary.Record.ToRDF(w)
@@ -55,7 +56,6 @@ func (intermediary *Intermediary) ExportAll(w io.Writer, store *badgerhold.Store
 	tx := store.Badger().NewTransaction(false)
 	defer tx.Discard()
 	err := store.TxForEach(tx, q, func(entry *Intermediary) error {
-		entry.Normalize()
 		entry.ToRDF(w)
 		return nil
 	})

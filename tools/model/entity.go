@@ -26,7 +26,7 @@ type Entity struct {
 
 func (e *Entity) Normalize() {
 	e.Record.Normalize()
-	if e.Name == "" {
+	if e.Name == "" || e.Name == "None" {
 		e.Name = fmt.Sprintf("Unknown Entity %s", e.NodeID)
 	}
 	// Triple 'X' is the recognized value for an unknown jurisdiction (Wikipedia)
@@ -41,6 +41,7 @@ func (e *Entity) String() string {
 
 func (e *Entity) ToRDF(w io.Writer) {
 	id := e.RDFID()
+	e.Normalize()
 
 	fmt.Fprintf(w, "%s <dgraph.type> \"Entity\" .\n", id)
 	e.Record.ToRDF(w)
@@ -52,7 +53,6 @@ func (e *Entity) ExportAll(w io.Writer, store *badgerhold.Store) error {
 	tx := store.Badger().NewTransaction(false)
 	defer tx.Discard()
 	err := store.TxForEach(tx, q, func(entry *Entity) error {
-		entry.Normalize()
 		entry.ToRDF(w)
 		return nil
 	})

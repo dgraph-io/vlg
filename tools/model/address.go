@@ -30,10 +30,12 @@ type Address struct {
 
 func (a *Address) Normalize() {
 	a.Record.Normalize()
+	// if the address is empty or "None", then the name is the address (and the address is blank)
 	if a.Name == "" || a.Name == "None" {
 		a.Name = a.Address
+		a.Address = ""
 	}
-	if a.Name == "None" {
+	if a.Name == "None" || a.Name == "" {
 		a.Unresolved = true
 		a.Confidence = 0.0
 		a.Name = fmt.Sprintf("Unknown Address %s", a.NodeID)
@@ -46,6 +48,7 @@ func (a *Address) String() string {
 
 func (a *Address) ToRDF(w io.Writer) {
 	id := a.RDFID()
+	a.Normalize()
 
 	fmt.Fprintf(w, "%s <dgraph.type> \"Address\" .\n", id)
 	a.Record.ToRDF(w)
@@ -61,7 +64,6 @@ func (address *Address) ExportAll(w io.Writer, store *badgerhold.Store) error {
 	tx := store.Badger().NewTransaction(false)
 	defer tx.Discard()
 	err := store.TxForEach(tx, q, func(entry *Address) error {
-		entry.Normalize()
 		entry.ToRDF(w)
 		return nil
 	})
