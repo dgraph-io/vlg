@@ -2,3 +2,5 @@
 .vscode/settings.json
 tools/data
 rdf-subset/*
+notebook/spark-*
+out/*
