@@ -100,7 +100,7 @@ enum OtherType {
 }
 
 """
-Other represents other companies, trusts and foundations.
+Other (an ICIJ term) represents other companies, trusts and foundations.
 """
 type Other implements Record {
      "The former name of the entity"
