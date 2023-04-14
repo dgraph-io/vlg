@@ -1,5 +1,3 @@
-company_type
-""
 Business Company Limited by Shares
 The GRA group of Companies for express Co.
 Sundry Account
