@@ -11,7 +11,7 @@ import (
 )
 
 const exportDir = "../rdf-subset"
-const exportCount = 50000
+const exportCount = 100000
 
 // Export a subset of the data to RDF files.
 func main() {
