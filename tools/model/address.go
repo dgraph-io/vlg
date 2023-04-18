@@ -3,7 +3,9 @@ package model
 import (
 	"fmt"
 	"io"
+	"os"
 
+	"github.com/gocarina/gocsv"
 	tstore "github.com/matthewmcneely/triplestore"
 	"github.com/timshannon/badgerhold/v4"
 )
@@ -25,7 +27,7 @@ type Address struct {
 
 	// The source of the geo-encoding
 	GeoSource string    `predicate:"Address.geoSource"`
-	Location  *Location `json:"location"`
+	Location  *Location `json:"Location"`
 }
 
 func (a *Address) Normalize() {
@@ -56,6 +58,14 @@ func (a *Address) ToRDF(w io.Writer) {
 	fmt.Fprintf(w, "%s <dgraph.type> \"Address\" .\n", id)
 	a.Record.ToRDF(w)
 	RDFEncodeTriples(w, tstore.TriplesFromStruct(id, a))
+	if a.Location == nil {
+		if censusAddress, ok := censusAddresses[a.NodeID]; ok {
+			a.Location = &Location{
+				Lat:  censusAddress.Lat,
+				Long: censusAddress.Long,
+			}
+		}
+	}
 	if a.Location != nil {
 		geoJSON := fmt.Sprintf("\"{'type':'Point','coordinates':[%0.7f,%0.7f]}\"^^<geo:geojson>", a.Location.Long, a.Location.Lat)
 		fmt.Fprintf(w, "%s <Address.location> %s .\n", id, geoJSON)
@@ -71,4 +81,37 @@ func (address *Address) ExportAll(w io.Writer, store *badgerhold.Store) error {
 		return nil
 	})
 	return err
+}
+
+type USCensusAddress struct {
+	NodeID string  `csv:"node_id"`
+	Name   string  `csv:"name"`
+	Lat    float64 `csv:"lat"`
+	Long   float64 `csv:"long"`
+}
+
+var censusAddresses map[string]*USCensusAddress
+
+// Load the census addresses CSV file and create a map of node IDs to addresses.
+// Fails silently if the file is not found or address nodeID is not found.
+// See [/notes/3. Data Importing.md](/notes/3.%20Data%20Importing.md) for more information.
+func init() {
+	censusAddresses = make(map[string]*USCensusAddress)
+
+	f, err := os.OpenFile("addresses-geoencoded.csv", os.O_RDONLY, os.ModePerm)
+	if err != nil {
+		wd, _ := os.Getwd()
+		fmt.Println("No census addresses CSV found, pwd:", wd)
+		return
+	}
+
+	addresses := []*USCensusAddress{}
+	if err := gocsv.UnmarshalFile(f, &addresses); err != nil {
+		fmt.Println("Error unmarshalling census addresses CSV", err)
+		return
+	}
+	for _, address := range addresses {
+		censusAddresses[address.NodeID] = address
+	}
+	f.Close()
 }

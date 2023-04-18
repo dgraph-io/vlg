@@ -2,6 +2,7 @@ package model
 
 import (
 	"bytes"
+	"strings"
 	"testing"
 )
 
@@ -101,5 +102,21 @@ _:2 <Address.location> "{'type':'Point','coordinates':[-122.4220186,37.7723180]}
 				t.Errorf("Address.ToRDF() = %v, want %v", gotW, tt.wantW)
 			}
 		})
+	}
+}
+
+func Test_LoadGeoEncodedAddress(t *testing.T) {
+	address := &Address{
+		Record: Record{
+			NodeID: "67299",
+			Name:   "Test",
+		},
+	}
+
+	stringWriter := &bytes.Buffer{}
+	address.ToRDF(stringWriter)
+
+	if !strings.Contains(stringWriter.String(), "-122.1402772,37.4267879") {
+		t.Errorf("Address.ToRDF() = %v, want %v", stringWriter.String(), "-122.1402772,37.4267879")
 	}
 }
