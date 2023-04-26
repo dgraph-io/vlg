@@ -10,7 +10,7 @@ import (
 	"golang.org/x/text/language"
 )
 
-// DateTime is a wrapper around time.Time that can be unmarshalled from a CSV.
+// DateTime is a wrapper around time.Time that can be unmarshaled from a CSV.
 // The gocarina/gocsv package supports the declaration of UnmarshalCSV methods.
 type DateTime struct {
 	time.Time
@@ -77,6 +77,7 @@ func (date *DateTime) UnmarshalCSV(csv string) (err error) {
 	csv = strings.Replace(csv, "0214", "2014", 1)
 	csv = strings.Replace(csv, "1196", "1996", 1)
 	csv = strings.Replace(csv, "1198", "1998", 1)
+	csv = strings.Replace(csv, "2298", "1998", 1)
 	if replaceDate, ok := badDateMap[csv]; ok {
 		csv = replaceDate
 	}
@@ -111,8 +112,13 @@ func (date *DateTime) UnmarshalCSV(csv string) (err error) {
 	for _, format := range formats {
 		date.Time, err = time.Parse(format, csv)
 		if err == nil {
-			if date.Time.Year() < 1800 || date.Time.Year() > 2800 {
-				return errors.Errorf("invalid date %s", csv)
+			if date.Time.Year() < 1800 {
+				date.Time = time.Date(1800, date.Time.Month(), date.Time.Day(),
+					0, 0, 0, 0, time.UTC)
+			}
+			if date.Time.Year() > 2200 {
+				date.Time = time.Date(2200, date.Time.Month(), date.Time.Day(),
+					0, 0, 0, 0, time.UTC)
 			}
 			return nil
 		}

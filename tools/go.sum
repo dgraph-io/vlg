@@ -82,6 +82,8 @@ github.com/kr/pretty v0.1.0/go.mod h1:dAy3ld7l9f0ibDNOQOHHMYYIIbhfbHSm3C4ZsoJORN
 github.com/kr/pty v1.1.1/go.mod h1:pFQYn66WHrOpPYNljwOMqo10TkYh1fy3cYio2l3bCsQ=
 github.com/kr/text v0.1.0/go.mod h1:4Jbv+DJW3UT/LiOwJeYQe1efqtUx/iVham/4vfdArNI=
 github.com/magiconair/properties v1.8.0/go.mod h1:PppfXfuXeibc/6YijjN8zIbojt8czPbwD3XqdrwzmxQ=
+github.com/matthewmcneely/triplestore v0.0.0-20230321204814-2bd81a823876 h1:RFNiBIgIwp2+o96R2qDBlkWsNos+BIqnVIqeUv3f2GA=
+github.com/matthewmcneely/triplestore v0.0.0-20230321204814-2bd81a823876/go.mod h1:gbQVlRQquaYT5J6wy4/eKI+wyAu2z4r8rqyez3divWY=
 github.com/mikekonan/go-countries v1.1.2 h1:NTkf5myJSEuzex5N7XLEO+iHxSirferm3WKVZqoucBc=
 github.com/mikekonan/go-countries v1.1.2/go.mod h1:xedjaVuxceyNbu1NwPNsSRud3rG07/vQGkFh+Ec2YQ8=
 github.com/mitchellh/go-homedir v1.1.0/go.mod h1:SfyaCUpYCn1Vlf4IUYiD9fPX4A5wJrkLzIz1N1q0pr0=
@@ -114,6 +116,8 @@ github.com/timshannon/badgerhold/v3 v3.0.0-20210909134927-2b6764d68c1e/go.mod h1
 github.com/timshannon/badgerhold/v4 v4.0.2 h1:83OLY/NFnEaMnHEPd84bYtkLipVkjTsMbzQRYbk47g4=
 github.com/timshannon/badgerhold/v4 v4.0.2/go.mod h1:rh6RyXLQFsvrvcKondPQQFZnNovpRzu+gS0FlLxYuHY=
 github.com/ugorji/go/codec v0.0.0-20181204163529-d75b2dcb6bc8/go.mod h1:VFNgLljTbGfSG7qAOspJ7OScBnGdDN/yBr0sguwnwf0=
+github.com/wallix/triplestore v0.0.0-20180213143850-4099dd913851 h1:wkoRryfeVJs3/GdZr4hwHuaOHqkAljPRh7coa0mmhy8=
+github.com/wallix/triplestore v0.0.0-20180213143850-4099dd913851/go.mod h1:0mjZIZg2WYnhGU4dFdrZgnRcBshZzS97uz9Wq3Cgf7w=
 github.com/xordataexchange/crypt v0.0.3-0.20170626215501-b2862e3d0a77/go.mod h1:aYKd//L2LvnjZzWKhF00oedf4jCCReLcmhLdhm1A27Q=
 github.com/yuin/goldmark v1.1.27/go.mod h1:3hX8gzYuyVAZsxl0MRgGTJEmQBFcNTphYh9decYSb74=
 github.com/yuin/goldmark v1.2.1/go.mod h1:3hX8gzYuyVAZsxl0MRgGTJEmQBFcNTphYh9decYSb74=

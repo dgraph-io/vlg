@@ -2,6 +2,10 @@ package model
 
 import (
 	"fmt"
+	"io"
+
+	tstore "github.com/matthewmcneely/triplestore"
+	"github.com/timshannon/badgerhold/v4"
 )
 
 type Entity struct {
@@ -22,7 +26,7 @@ type Entity struct {
 
 func (e *Entity) Normalize() {
 	e.Record.Normalize()
-	if e.Name == "" {
+	if e.Name == "" || e.Name == "None" {
 		e.Name = fmt.Sprintf("Unknown Entity %s", e.NodeID)
 	}
 	// Triple 'X' is the recognized value for an unknown jurisdiction (Wikipedia)
@@ -33,4 +37,24 @@ func (e *Entity) Normalize() {
 
 func (e *Entity) String() string {
 	return fmt.Sprintf("Entity %s '%s'", e.NodeID, e.Name)
+}
+
+func (e *Entity) ToRDF(w io.Writer) {
+	id := e.RDFID()
+	e.Normalize()
+
+	fmt.Fprintf(w, "%s <dgraph.type> \"Entity\" .\n", id)
+	e.Record.ToRDF(w)
+	RDFEncodeTriples(w, tstore.TriplesFromStruct(id, e))
+}
+
+func (e *Entity) ExportAll(w io.Writer, store *badgerhold.Store) error {
+	q := &badgerhold.Query{}
+	tx := store.Badger().NewTransaction(false)
+	defer tx.Discard()
+	err := store.TxForEach(tx, q, func(entry *Entity) error {
+		entry.ToRDF(w)
+		return nil
+	})
+	return err
 }

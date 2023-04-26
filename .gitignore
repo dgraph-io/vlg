@@ -1,4 +1,6 @@
 .DS_Store
 .vscode/settings.json
 tools/data
-rdf-subset/*
+rdf/*
+notebook/spark-*
+out/*

@@ -2,6 +2,8 @@ package model
 
 import (
 	"fmt"
+	"io"
+	"log"
 	"strings"
 
 	"github.com/timshannon/badgerhold/v4"
@@ -21,6 +23,53 @@ type Relationship struct {
 
 func (r *Relationship) String() string {
 	return fmt.Sprintf("%s->%s->%s", r.FromID, r.RelationshipType, r.ToID)
+}
+
+/*
+| connected_to             |
+| intermediary_of          |
+| officer_of               |
+| probably_same_officer_as |
+| registered_address       |
+| same_address_as          |
+| same_as                  |
+| same_company_as          |
+| same_id_as               |
+| same_intermediary_as     |
+| same_name_as             |
+| similar                  |
+| similar_company_as       |
+| underlying               |
+*/
+func (r *Relationship) ToRDF(w io.Writer) {
+	switch r.RelationshipType {
+	case "connected_to":
+		fmt.Fprintf(w, "_:%s <Record.connectedTo> _:%s .\n", r.FromID, r.ToID)
+		fmt.Fprintf(w, "_:%s <Record.connectedTo> _:%s .\n", r.ToID, r.FromID)
+	case "intermediary_of":
+		fmt.Fprintf(w, "_:%s <Record.hasIntermediary> _:%s .\n", r.ToID, r.FromID)
+		fmt.Fprintf(w, "_:%s <Record.intermediaryFor> _:%s .\n", r.FromID, r.ToID)
+	case "officer_of":
+		fmt.Fprintf(w, "_:%s <Record.hasOfficer> _:%s .\n", r.ToID, r.FromID)
+		fmt.Fprintf(w, "_:%s <Record.officerFor> _:%s .\n", r.FromID, r.ToID)
+	case "registered_address":
+		fmt.Fprintf(w, "_:%s <Record.hasAddress> _:%s .\n", r.FromID, r.ToID)
+		fmt.Fprintf(w, "_:%s <Record.addressFor> _:%s .\n", r.ToID, r.FromID)
+	case "same_address_as", "same_as", "same_company_as", "same_id_as",
+		"same_intermediary_as":
+		fmt.Fprintf(w, "_:%s <Record.sameAs> _:%s .\n", r.FromID, r.ToID)
+		fmt.Fprintf(w, "_:%s <Record.sameAs> _:%s .\n", r.ToID, r.FromID)
+	case "same_name_as":
+		fmt.Fprintf(w, "_:%s <Record.sameNameAs> _:%s .\n", r.FromID, r.ToID)
+		fmt.Fprintf(w, "_:%s <Record.sameNameAs> _:%s .\n", r.ToID, r.FromID)
+	case "probably_same_officer_as", "similar", "similar_company_as":
+		fmt.Fprintf(w, "_:%s <Record.similarTo> _:%s .\n", r.FromID, r.ToID)
+		fmt.Fprintf(w, "_:%s <Record.similarTo> _:%s .\n", r.ToID, r.FromID)
+	default:
+		log.Println("Warning, skipping relationship type", r.RelationshipType)
+	}
+
+	// TODO: write facets
 }
 
 // CountRelationships counts the number of relationships of each type.
