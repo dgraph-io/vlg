@@ -2,7 +2,11 @@ package model
 
 import (
 	"fmt"
+	"io"
 	"strings"
+
+	tstore "github.com/matthewmcneely/triplestore"
+	"github.com/timshannon/badgerhold/v4"
 )
 
 type Other struct {

@@ -2,9 +2,11 @@ package model
 
 import (
 	"fmt"
+	"io"
 	"reflect"
 	"strings"
 
+	tstore "github.com/matthewmcneely/triplestore"
 	country "github.com/mikekonan/go-countries"
 	"github.com/pkg/errors"
 	"github.com/timshannon/badgerhold/v4"
@@ -21,6 +23,7 @@ type Record struct {
 }
 
 type IRecord interface {
+	ToRDF(io.Writer)
 }
 
 // Normalize normalizes the record
@@ -57,6 +60,17 @@ func (obj *Record) Normalize() {
 	default:
 		obj.SourceID = "OffshoreLeaks"
 	}
+}
+
+func (obj *Record) RDFID() string {
+	return fmt.Sprintf("_:%s", obj.NodeID)
+}
+
+func (obj *Record) ToRDF(w io.Writer) {
+	id := obj.RDFID()
+
+	fmt.Fprintf(w, "%s <dgraph.type> \"Record\" .\n", id)
+	RDFEncodeTriples(w, tstore.TriplesFromStruct(id, obj))
 }
 
 // RecordByID returns any record by ID. It also returns the type of the record.

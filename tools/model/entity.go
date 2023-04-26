@@ -2,6 +2,10 @@ package model
 
 import (
 	"fmt"
+	"io"
+
+	tstore "github.com/matthewmcneely/triplestore"
+	"github.com/timshannon/badgerhold/v4"
 )
 
 type Entity struct {

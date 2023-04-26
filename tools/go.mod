@@ -5,6 +5,7 @@ go 1.19
 require (
 	github.com/davecgh/go-spew v1.1.1
 	github.com/gocarina/gocsv v0.0.0-20230226133904-70c27cb2918a
+	github.com/matthewmcneely/triplestore v0.0.0-20230321204814-2bd81a823876
 	github.com/mikekonan/go-countries v1.1.2
 	github.com/pkg/errors v0.9.1
 	github.com/storozhukBM/verifier v1.2.0
@@ -25,6 +26,7 @@ require (
 	github.com/golang/snappy v0.0.4 // indirect
 	github.com/google/flatbuffers v2.0.0+incompatible // indirect
 	github.com/klauspost/compress v1.13.1 // indirect
+	github.com/wallix/triplestore v0.0.0-20180213143850-4099dd913851 // indirect
 	go.opencensus.io v0.23.0 // indirect
 	golang.org/x/net v0.0.0-20210614182718-04defd469f4e // indirect
 	golang.org/x/sys v0.0.0-20210630005230-0f9fa26af87c // indirect
