@@ -1,8 +1,18 @@
 package main
 
-import "testing"
+import (
+	"net"
+	"strings"
+	"testing"
+	"time"
+)
 
 func Test_queryLibPostal(t *testing.T) {
+	timeout := 1 * time.Second
+	_, err := net.DialTimeout("tcp", "localhost:8899", timeout)
+	if err != nil && strings.Contains(err.Error(), "connection refused") {
+		t.Skip("Skipping test, libpostal service not running")
+	}
 	type args struct {
 		address string
 	}
