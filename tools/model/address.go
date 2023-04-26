@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"io"
 	"os"
+	"sync"
 
 	"github.com/gocarina/gocsv"
 	tstore "github.com/matthewmcneely/triplestore"
@@ -59,7 +60,7 @@ func (a *Address) ToRDF(w io.Writer) {
 	a.Record.ToRDF(w)
 	RDFEncodeTriples(w, tstore.TriplesFromStruct(id, a))
 	if a.Location == nil {
-		if censusAddress, ok := censusAddresses[a.NodeID]; ok {
+		if censusAddress := getCensusAddress(a.NodeID); censusAddress != nil {
 			a.Location = &Location{
 				Lat:  censusAddress.Lat,
 				Long: censusAddress.Long,
@@ -92,26 +93,36 @@ type USCensusAddress struct {
 
 var censusAddresses map[string]*USCensusAddress
 
-// Load the census addresses CSV file and create a map of node IDs to addresses.
-// Fails silently if the file is not found or address nodeID is not found.
-// See [/notes/3. Data Importing.md](/notes/3.%20Data%20Importing.md) for more information.
-func init() {
-	censusAddresses = make(map[string]*USCensusAddress)
+func getCensusAddress(nodeID string) *USCensusAddress {
+	once := sync.Once{}
 
-	f, err := os.OpenFile("addresses-geoencoded.csv", os.O_RDONLY, os.ModePerm)
-	if err != nil {
-		wd, _ := os.Getwd()
-		fmt.Println("No census addresses CSV found, pwd:", wd)
-		return
+	once.Do(func() {
+		// Load the census addresses CSV file and create a map of node IDs to addresses.
+		// Fails silently if the file is not found or address nodeID is not found.
+		// See [/notes/3. Data Importing.md](/notes/3.%20Data%20Importing.md) for more information.
+		censusAddresses = make(map[string]*USCensusAddress)
+		fileLocation := os.Getenv("VLG_US_CENSUS_ADDRESSES")
+		if fileLocation == "" {
+			fileLocation = "addresses-geoencoded.csv"
+		}
+		f, err := os.OpenFile(fileLocation, os.O_RDONLY, os.ModePerm)
+		if err != nil {
+			wd, _ := os.Getwd()
+			fmt.Println("No census addresses CSV found, pwd:", wd)
+			return
+		}
+		addresses := []*USCensusAddress{}
+		if err := gocsv.UnmarshalFile(f, &addresses); err != nil {
+			fmt.Println("Error unmarshalling census addresses CSV", err)
+			return
+		}
+		for _, address := range addresses {
+			censusAddresses[address.NodeID] = address
+		}
+		f.Close()
+	})
+	if censusAddresses == nil {
+		return nil
 	}
-
-	addresses := []*USCensusAddress{}
-	if err := gocsv.UnmarshalFile(f, &addresses); err != nil {
-		fmt.Println("Error unmarshalling census addresses CSV", err)
-		return
-	}
-	for _, address := range addresses {
-		censusAddresses[address.NodeID] = address
-	}
-	f.Close()
+	return censusAddresses[nodeID]
 }

@@ -2,6 +2,7 @@ package model
 
 import (
 	"bytes"
+	"os"
 	"strings"
 	"testing"
 )
@@ -82,7 +83,7 @@ _:2 <Address.location> "{'type':'Point','coordinates':[-122.4220186,37.7723180]}
 _:2 <dgraph.type> "Record" .
 _:2 <Record.nodeID> "2"^^<xs:string> .
 _:2 <Record.name> "Unknown Address 2"^^<xs:string> .
-_:2 <Record.sourceID> "Unknown"^^<xs:string> .
+_:2 <Record.sourceID> "OffshoreLeaks"^^<xs:string> .
 _:2 <Address.geoSource> "google"^^<xs:string> .
 _:2 <Address.location> "{'type':'Point','coordinates':[-122.4220186,37.7723180]}"^^<geo:geojson> .
 `,
@@ -106,6 +107,8 @@ _:2 <Address.location> "{'type':'Point','coordinates':[-122.4220186,37.7723180]}
 }
 
 func Test_LoadGeoEncodedAddress(t *testing.T) {
+	os.Setenv("VLG_US_CENSUS_ADDRESSES", "../addresses-geoencoded.csv")
+
 	address := &Address{
 		Record: Record{
 			NodeID: "67299",
