@@ -1,6 +1,6 @@
 ## VLG Jupyter Notebook Resources
 
-This folder houses various Jupyter Notebooks for working with the VLG. As we use [pipenv](https://pipenv.pypa.io/en/latest/) to bring some sanity to the python dev flow, each notebook is located in its own subfolder, with a corresponding Pipfile.
+This folder houses various Jupyter Notebooks for working with the VLG. Because we use [pipenv](https://pipenv.pypa.io/en/latest/) to bring some sanity to the python dev flow, each notebook is located in its own subfolder, with a corresponding Pipfile.
 
 The only requirements for _all_ notebooks is Python 3.8 or later, and `pipenv`.
 
