@@ -29,3 +29,5 @@ services:
         --security whitelist=0.0.0.0/0
         --logtostderr -v=2
         --telemetry sentry=false
+        --limit size-mb=2048mb
+        --limit query-edge=2000000
