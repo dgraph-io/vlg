@@ -4,3 +4,4 @@ tools/data
 rdf/*
 notebook/spark-*
 out/*
+.ipynb_checkpoints
