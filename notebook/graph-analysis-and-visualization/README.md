@@ -21,7 +21,7 @@ Once your cluster is up and loaded, you can run the notebook
 
 ```
 pipenv install
-pipenv run juypter lab notebook.ipynb
+pipenv run jupyter lab notebook.ipynb
 ```
 
 Note, this notebook and associated package installs has been tested with python 3.8 and 3.11.
