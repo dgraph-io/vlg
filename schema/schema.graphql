@@ -66,7 +66,7 @@ type Entity implements Record {
     "The original name of the entity"
     originalName: String @search(by: [exact, term, fulltext, regexp])
     "The former name of the entity"
-    formerName: String! @search(by: [exact, term, fulltext, regexp])
+    formerName: String @search(by: [exact, term, fulltext, regexp])
 
     "The jurisdiction of the entity"
     jurisdiction: String @search(by: [exact])
