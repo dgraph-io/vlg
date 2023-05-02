@@ -71,6 +71,9 @@ func main() {
 		"80133535": {}, // Rex Tillerson: Former ExxonMobil CEO and U.S. Secretary of State
 		"80118878": {}, // Wilbur Ross: Former U.S. Secretary of Commerce
 		"84100003": {}, // The Duchy of Lancaster: The private estate of the British monarch
+		"82006003": {}, // Connected to Duchy of Lancaster
+		"80142327": {}, // Connected to Duchy of Lancaster
+		"81031132": {}, // Connected to Duchy of Lancaster
 		"56073968": {}, // Shakira: Colombian singer
 	}
 	notableCount := 0
