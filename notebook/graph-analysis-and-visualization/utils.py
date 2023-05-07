@@ -8,7 +8,7 @@ def warning(text):
     return Markdown(f'<div class="alert alert-danger">{text}</div>')
 
 def graphistry_login():
-    servers = ['3.232.235.63']
+    servers = ['3.232.235.63', '3.236.27.20', '3.85.218.77']
     gserver = servers[random.randint(0, len(servers) - 1)]
     graphistry.register(api=3, server=gserver, protocol='http', username='kgc-user', password=os.getenv("GRAPHISTRY_PASSWORD")) 
     print("Graphistry login successful, version: ", graphistry.__version__)
