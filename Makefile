@@ -11,10 +11,10 @@ DOCKER_NETWORK := $(shell basename $(PWD))_default
 
 all: clean init load_data install_dependencies start_notebook
 
-install_dependencies:
+install_docker_pipenv:
 	if [ "$$(uname)" = "Darwin" ]; then \
 		brew install docker docker-compose pipenv; \
-		pipenv --python 3.11 install; \
+		pipenv --python 3.9 install; \
 	elif [ "$$(uname)" = "Linux" ]; then \
 		sudo apt-get update -y; \
 		sudo apt-get install -y docker.io docker-compose python3-pip python3-dev; \
@@ -37,7 +37,7 @@ load_data:
 	@docker run --network $(DOCKER_NETWORK) -v $(PWD):/home dgraph/dgraph:latest dgraph live -f /home/$(RDF_PATH) --alpha vlg_alpha:9080 --zero vlg_zero:5080
 
 
-install_dependencies:
+setup_virtual_env:
 	@cd $(NOTEBOOK_PATH) && pipenv install
 
 start_notebook:
