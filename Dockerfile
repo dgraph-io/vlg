@@ -6,7 +6,7 @@ RUN apk add --no-cache \
     curl \
     git \
     make \
-    python3.9 \
+    python3 \
     py3-pip \
     bash \
     build-base \

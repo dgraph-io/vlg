@@ -18,7 +18,7 @@ importlib-resources = "*"
 [dev-packages]
 
 [requires]
-python_version = "3"
+python_version = "3.9"
 
 [packages.networkx]
 extras = [ "default",]
