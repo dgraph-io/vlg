@@ -9,8 +9,6 @@ services:
   zero:
     image: dgraph/dgraph:latest
     container_name: vlg_zero
-    volumes:
-      - ~/dgraph/vlg:/dgraph
     ports:
       - 5080:5080
       - 6080:6080
@@ -19,8 +17,6 @@ services:
   alpha:
     image: dgraph/dgraph:latest
     container_name: vlg_alpha
-    volumes:
-      - ~/dgraph/vlg:/dgraph
     ports:
       - 8080:8080
       - 9080:9080
