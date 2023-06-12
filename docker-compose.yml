@@ -32,5 +32,5 @@ services:
         --limit size-mb=2048mb
         --limit query-edge=2000000
 networks:
-  my_network:
+  vlg_default:
     name: vlg_default
