@@ -30,7 +30,7 @@ clean:
 init:
 	@docker-compose -f $(DOCKER_COMPOSE_FILE) up -d
 	@bash -c "sleep 20"
-	@curl -Ss --data-binary '@$(SCHEMA_PATH)' http://localhost:8080/admin/schema
+	@curl -Ss --data-binary '@$(SCHEMA_PATH)' alpha:8080/admin/schema
 
 
 load_data:

@@ -31,3 +31,6 @@ services:
         --telemetry sentry=false
         --limit size-mb=2048mb
         --limit query-edge=2000000
+networks:
+  my_network:
+    name: my_network
