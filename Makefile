@@ -28,17 +28,20 @@ clean:
 	@sudo rm -rf out
 
 init:
+	@dockerd
 	@docker-compose -f $(DOCKER_COMPOSE_FILE) up -d
 	@bash -c "sleep 20"
 	@curl -Ss --data-binary '@$(SCHEMA_PATH)' alpha:8080/admin/schema
 
 
 load_data:
-	@docker run --network $(DOCKER_NETWORK) -v $(PWD):/home dgraph/dgraph:latest dgraph live -f /home/$(RDF_PATH) --alpha vlg_alpha:9080 --zero vlg_zero:5080
+#	@docker run --network vlg_default -v $(PWD):/home dgraph/dgraph:latest dgraph live -f /home/$(RDF_PATH) --alpha vlg_alpha:9080 --zero vlg_zero:5080
 
-
+	@docker cp /rdf-subset/data.rdf.gz vlg_alpha:/data.rdf.gz
+	@docker exec -it vlg_alpha dgraph live -f data.rdf.gz --alpha localhost:9080 --zero vlg_zero:5080
 setup_virtual_env:
 	@cd $(NOTEBOOK_PATH) && pipenv install
 
 start_notebook:
-	@cd $(NOTEBOOK_PATH) && pipenv run jupyter lab notebook.ipynb
+	#@cd $(NOTEBOOK_PATH) && pipenv run jupyter lab notebook.ipynb
+	@cd $(NOTEBOOK_PATH) && pipenv run jupyter lab notebook.ipynb --ip=0.0.0.0 --port=8888 --allow-root
