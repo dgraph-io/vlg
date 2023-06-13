@@ -29,16 +29,15 @@ clean:
 
 init:
 	@dockerd
-	@docker-compose -f $(DOCKER_COMPOSE_FILE) up -d
+	@docker-compose up -d
 	@bash -c "sleep 20"
-	@curl -Ss --data-binary '@$(SCHEMA_PATH)' alpha:8080/admin/schema
+	@curl -Ss --data-binary '@schema/schema.graphql' alpha:8080/admin/schema
 
 
 load_data:
 #	@docker run --network vlg_default -v $(PWD):/home dgraph/dgraph:latest dgraph live -f /home/$(RDF_PATH) --alpha vlg_alpha:9080 --zero vlg_zero:5080
-
-	@docker cp /rdf-subset/data.rdf.gz vlg_alpha:/data.rdf.gz
-	@docker exec -it vlg_alpha dgraph live -f data.rdf.gz --alpha localhost:9080 --zero vlg_zero:5080
+	@docker cp rdf-subset/data.rdf.gz vlg_alpha:/data.rdf.gz
+	@docker exec -it vlg_alpha dgraph live -f /data.rdf.gz --alpha localhost:9080 --zero vlg_zero:5080
 setup_virtual_env:
 	@cd $(NOTEBOOK_PATH) && pipenv install
 
