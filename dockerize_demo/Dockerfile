@@ -18,8 +18,6 @@ RUN pip install --no-cache-dir pipenv
 # Install project dependencies using pipenv
 RUN pipenv install
 
-# Install Jupyter
-#RUN pipenv run pip install jupyter
 
 # Copy the schema file to the container
 COPY schema.graphql /app/
