@@ -24,9 +24,13 @@ COPY schema.graphql /app/
 
 # Copy the notebook files to the container
 COPY notebook.ipynb /app/
+COPY workshop.ipynb /app/
 
 # Copy the data files to the container
 COPY data.rdf.gz /app/
+
+#copy utils
+COPY utils.py /app/
 
 # Expose the necessary ports
 EXPOSE 8888 8080
