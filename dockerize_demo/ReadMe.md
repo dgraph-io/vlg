@@ -7,3 +7,7 @@ docker build --no-cache -t image_name .
 
 Step 2: Run the container. Make sure to forward 8888 since the notebook will be running from the container
 docker run -p 8888:8888 image_name
+
+
+For Graphistry: Go to Graphistry and create an account. Dont use SSO as you will need the provide 
+your username and password in the python notebook
