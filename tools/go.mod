@@ -10,7 +10,7 @@ require (
 	github.com/pkg/errors v0.9.1
 	github.com/storozhukBM/verifier v1.2.0
 	github.com/timshannon/badgerhold/v4 v4.0.2
-	golang.org/x/text v0.3.6
+	golang.org/x/text v0.14.0
 )
 
 require (
@@ -28,7 +28,7 @@ require (
 	github.com/klauspost/compress v1.13.1 // indirect
 	github.com/wallix/triplestore v0.0.0-20180213143850-4099dd913851 // indirect
 	go.opencensus.io v0.23.0 // indirect
-	golang.org/x/net v0.0.0-20210614182718-04defd469f4e // indirect
-	golang.org/x/sys v0.0.0-20210630005230-0f9fa26af87c // indirect
+	golang.org/x/net v0.23.0 // indirect
+	golang.org/x/sys v0.18.0 // indirect
 	google.golang.org/protobuf v1.27.1 // indirect
 )
